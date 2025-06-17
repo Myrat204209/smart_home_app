@@ -15,6 +15,7 @@ class AppBottomNavigation extends StatelessWidget {
       routes: [
         DashboardRoute(),
         AutomationRoute(),
+        ProfileRoute(),
       ],
 
       // backgroundColor: AppColors.bgMain,
@@ -41,9 +42,16 @@ class AppBottomNavigation extends StatelessWidget {
             NavigationDestinationIcon(
               tabsRouterIndex: tabsRouter.activeIndex,
               destinationIndex: 1,
-              icon: Icons.settings,
-              label: 'Settings',
+              icon: Icons.auto_awesome,
+              label: 'Automation',
             ),
+            NavigationDestinationIcon(
+              tabsRouterIndex: tabsRouter.activeIndex,
+              destinationIndex: 1,
+              icon: Icons.person,
+              label: 'Profile',
+            ),
+            
           ],
           height: 56,
           indicatorShape: null,

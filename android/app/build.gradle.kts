@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.jantehnologiya.smart_home_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = 28.0.12674087
+    ndkVersion = "28.0.12674087"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
