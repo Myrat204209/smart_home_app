@@ -5,6 +5,11 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text(
+        'Dashboard View',
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+    );
   }
 }

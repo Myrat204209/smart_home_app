@@ -5,6 +5,11 @@ class AutomationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text(
+        'Automation View',
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+    );
   }
 }
