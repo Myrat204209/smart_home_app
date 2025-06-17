@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-
-import 'app_bottom_navigation.dart';
-
+import 'package:smart_home_app/features/features.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page|Screen,Route')
 class AppRouter extends RootStackRouter {
@@ -9,12 +7,14 @@ class AppRouter extends RootStackRouter {
   RouteType get defaultRouteType => RouteType.adaptive();
   @override
   List<AutoRoute> get routes => [
-    // AutoRoute(
-    //   page: AppBottomNavigation.page,
-    //   path: '/',
-    //   initial: true,
-    //   children: [
-    //   ],
-    // ),
+    AutoRoute(
+      page: AppBottomNavigation.page,
+      path: '/',
+      initial: true,
+      children: [
+        AutoRoute(page: DashboardRoute.page, path: 'dashboard'),
+        AutoRoute(page: AutomationRoute.page, path: 'settings'),
+      ],
+    ),
   ];
 }

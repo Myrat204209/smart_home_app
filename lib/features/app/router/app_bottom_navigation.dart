@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_home_app/features/app/app.dart';
 
 @RoutePage()
 class AppBottomNavigation extends StatelessWidget {
@@ -9,10 +10,12 @@ class AppBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       homeIndex: 0,
-
       transitionBuilder: (context, child, animation) =>
           FadeTransition(opacity: animation, child: child),
-      routes: [],
+      routes: [
+        DashboardRoute(),
+        AutomationRoute(),
+      ],
 
       // backgroundColor: AppColors.bgMain,
       bottomNavigationBuilder: (context, tabsRouter) {
@@ -28,7 +31,20 @@ class AppBottomNavigation extends StatelessWidget {
                   ?.popUntilRoot();
             }
           },
-          destinations: [],
+          destinations: [
+            NavigationDestinationIcon(
+              tabsRouterIndex: tabsRouter.activeIndex,
+              destinationIndex: 0,
+              icon: Icons.home,
+              label: 'Home',
+            ),
+            NavigationDestinationIcon(
+              tabsRouterIndex: tabsRouter.activeIndex,
+              destinationIndex: 1,
+              icon: Icons.settings,
+              label: 'Settings',
+            ),
+          ],
           height: 56,
           indicatorShape: null,
           backgroundColor: Colors.white,
