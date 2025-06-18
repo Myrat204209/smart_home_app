@@ -21,20 +21,28 @@ class DashboardTab extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.black,
+            color: !isSelected ? Colors.white : Colors.black,
           ),
           child: SizedBox.square(
             dimension: 80,
             child: Tab(
               height: 60,
-              icon: Icon(icon, size: 40, color: Colors.white),
+              icon: Icon(
+                icon,
+                size: 40,
+                color: isSelected ? Colors.white : Colors.black,
+              ),
             ),
           ),
         ),
         const SizedBox(height: 10),
         Text(
           title,
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: isSelected ? Colors.white : Colors.black),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
       ],
     );

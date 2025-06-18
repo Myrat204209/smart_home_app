@@ -14,19 +14,23 @@ class _DashboardViewState extends State<DashboardView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late PageController _pageController;
+
   @override
   void initState() {
     super.initState();
-    // Initialize TabController with 3 tabs
+    // Initialize TabController with 4 tabs
     _tabController = TabController(length: 4, vsync: this);
     // Initialize PageController
     _pageController = PageController();
 
-    // Sync TabBar with PageView
+    // Add a listener to the TabController to update the UI on tab changes
     _tabController.addListener(() {
+      // Check if the tab index is changing and update the PageView
       if (_tabController.indexIsChanging) {
         _pageController.jumpToPage(_tabController.index);
       }
+      // Call setState to rebuild the widget and update the tab colors
+      setState(() {});
     });
 
     // Sync PageView with TabBar
@@ -64,28 +68,34 @@ class _DashboardViewState extends State<DashboardView>
               DashboardTab(
                 title: 'Living Room',
                 isSelected: _tabController.index == 0,
-
                 icon: Icons.dashboard_outlined,
               ),
               DashboardTab(
                 title: 'Bedroom',
-isSelected:                 _tabController.index == 1,
+                isSelected: _tabController.index == 1,
                 icon: Icons.bedroom_parent_outlined,
               ),
-              DashboardTab(title: 'Kitchen', icon: Icons.kitchen_outlined,isSelected: _tabController.index == 2,),
-              DashboardTab(title: 'Camera', icon: Icons.security,isSelected: _tabController.index == 3,),
+              DashboardTab(
+                title: 'Kitchen',
+                icon: Icons.kitchen_outlined,
+                isSelected: _tabController.index == 2,
+              ),
+              DashboardTab(
+                title: 'Camera',
+                icon: Icons.security,
+                isSelected: _tabController.index == 3,
+              ),
             ],
           ),
           Expanded(
             child: PageView(
               controller: _pageController,
-              children: [
+              children: const [
                 Center(child: Text('Tab 1 Content')),
                 Center(child: Text('Tab 2 Content')),
                 Center(child: Text('Tab 3 Content')),
                 Center(child: Text('Tab 4 Content')),
               ],
-              //  child: const AutoRouter()),
             ),
           ),
         ],
