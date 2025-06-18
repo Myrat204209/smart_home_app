@@ -2,6 +2,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
+import 'package:smart_home_app/features/dashboard/ui/widgets/dashboard_devices_grid.dart';
+
+const kImagesList = [
+  'assets/images/speaker.jpg',
+  'assets/images/thermostat.jpg',
+  'assets/images/lights.jpg',
+  'assets/images/router.jpg',
+];
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
@@ -111,55 +119,10 @@ class _DashboardViewState extends State<DashboardView>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Devices',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          contentPadding: EdgeInsets.all(0),
-                          trailing: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: IconButton(
-                              icon: Icon(Icons.more_horiz_rounded),
-                              onPressed: () {
-                                // Navigate to add device page
-                              },
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 8.0,
-                                  crossAxisSpacing: 8.0,
-                                  childAspectRatio: 0.65,
-                                ),
-                            itemCount: 4, // Example number of devices
-                            itemBuilder: (context, index) {
-                              return Card(
-                                child: Center(
-                                  child: Text('Device ${index + 1}'),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Center(child: Text('Tab 2 Content')),
-                  Center(child: Text('Tab 3 Content')),
-                  Center(child: Text('Tab 4 Content')),
+                  DashboardDevicesGrid(),
+                  DashboardDevicesGrid(),
+                  DashboardDevicesGrid(),
+                  DashboardDevicesGrid(),
                 ],
               ),
             ),
