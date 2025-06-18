@@ -111,7 +111,9 @@ class _DashboardViewState extends State<DashboardView>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  DashboardDevicesGrid(),
+                  DashboardDevicesGrid(
+                    
+                  ),
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),

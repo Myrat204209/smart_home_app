@@ -17,7 +17,15 @@ class AppRouter extends RootStackRouter {
           path: 'dashboard',
           initial: true,
           children: [
-            AutoRoute(path: 'tab1', page: Tab1Route.page, initial: true),
+            AutoRoute(
+              path: 'tab1',
+              page: Tab1Route.page,
+              initial: true,
+              children: [
+                AutoRoute(path: 'lights', page: SliderRoute.page),
+                AutoRoute(path: 'thermostat', page: ThermostatRoute.page),
+              ],
+            ),
             AutoRoute(path: 'tab2', page: Tab2Route.page),
             AutoRoute(path: 'tab3', page: Tab3Route.page),
           ],
