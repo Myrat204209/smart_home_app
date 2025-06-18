@@ -24,13 +24,13 @@ class DashboardTab extends StatelessWidget {
             color: !isSelected ? Colors.white : Colors.black,
           ),
           child: SizedBox.square(
-            dimension: 80,
+            dimension: 70,
             child: Tab(
               height: 60,
               icon: Icon(
                 icon,
                 size: 40,
-                color: isSelected ? Colors.white : Colors.black,
+                color: isSelected ? Colors.white : Colors.grey[400],
               ),
             ),
           ),
@@ -39,7 +39,7 @@ class DashboardTab extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
