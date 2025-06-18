@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
 import 'package:smart_home_app/features/dashboard/ui/widgets/dashboard_devices_grid.dart';
 
-const kImagesList = [
-  'assets/images/speaker.jpg',
-  'assets/images/thermostat.jpg',
-  'assets/images/lights.jpg',
-  'assets/images/router.jpg',
-];
+
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});

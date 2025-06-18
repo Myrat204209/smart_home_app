@@ -1,8 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/dashboard/dashboard.dart';
-import 'package:smart_home_app/features/dashboard/ui/view/dashboard_view.dart';
+
+const kImagesList = [
+  'assets/images/speaker.png',
+  'assets/images/thermostat.png',
+  'assets/images/lights.png',
+  'assets/images/router.png',
+];
 
 class DashboardDevicesGrid extends StatelessWidget {
   const DashboardDevicesGrid({super.key});
@@ -41,13 +46,14 @@ class DashboardDevicesGrid extends StatelessWidget {
               itemCount: 4, // Example number of devices
               itemBuilder: (context, index) {
                 return Card(
+                  color: Colors.black,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Image.asset(
                           kImagesList[index],
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       Padding(
