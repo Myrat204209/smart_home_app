@@ -2,7 +2,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
-import 'package:smart_home_app/features/dashboard/ui/widgets/dashboard_devices_grid.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});

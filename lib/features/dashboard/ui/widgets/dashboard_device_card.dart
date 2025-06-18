@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DashboardDeviceCard extends StatefulWidget {
@@ -16,6 +15,7 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
+      borderRadius: BorderRadius.circular(20),
       child: Card(
         color: switched ? Colors.black : Colors.white,
         child: Column(
@@ -25,27 +25,53 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Smart Speaker',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Smart speaker',
+                          softWrap: true,
+                          style: TextStyle(
+                            fontSize: 18,
+                            height: 1,
+                            color: switched ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                        SizedBox.square(dimension: 5),
+                        Text(
+                          '60%',
+                          style: TextStyle(
+                            color: Colors.grey[400],
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  CupertinoSwitch(
-                    value: switched,
-                    onChanged: (value) {
-                      setState(() {
-                        value = !value;
-                      });
-                    },
+                  RotatedBox(
+                    quarterTurns: 3,
+                    child: Switch.adaptive(
+                      activeColor: Colors.black,
+                      activeTrackColor: Colors.white,
+                      inactiveThumbColor: Colors.white,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      trackOutlineColor: WidgetStateProperty.all(
+                        Colors.transparent,
+                      ),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
+                      inactiveTrackColor: Colors.grey[300],
+                      value: switched,
+                      onChanged: (bool value) {
+                        setState(() {
+                          switched = !switched;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),

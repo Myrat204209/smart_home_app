@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/dashboard/ui/widgets/dashboard_device_card.dart';
+import 'package:smart_home_app/features/dashboard/dashboard.dart';
 
 const kImagesList = [
   'assets/images/speaker.png',
@@ -10,11 +10,20 @@ const kImagesList = [
   'assets/images/router.png',
 ];
 
-class DashboardDevicesGrid extends StatelessWidget {
+class DashboardDevicesGrid extends StatefulWidget {
   const DashboardDevicesGrid({super.key});
 
   @override
+  State<DashboardDevicesGrid> createState() => _DashboardDevicesGridState();
+}
+
+class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Padding(
       padding: EdgeInsets.all(12),
       child: Column(
