@@ -32,9 +32,9 @@ class _AutomationViewState extends State<AutomationView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.lightBlue.shade400,
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.lightBlue.shade400,
         toolbarHeight: 60,
         leadingWidth: 80,
         actionsPadding: const EdgeInsets.only(right: 8, top: 12),

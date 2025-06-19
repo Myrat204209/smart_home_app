@@ -10,11 +10,12 @@ class MyRoutinesView extends StatefulWidget {
 
 class _MyRoutinesViewState extends State<MyRoutinesView>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late final TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       if (_tabController.indexIsChanging) {}
@@ -64,8 +65,9 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
         Expanded(
           child: TabBarView(
             controller: _tabController,
-            children: const [
-              Center(child: Text('All Routines')),
+            children: [
+              MyRoutinesCollapsibleView(),
+
               Center(child: Text('Favorite Routines')),
               Center(child: Text('Scheduled Routines')),
             ],
