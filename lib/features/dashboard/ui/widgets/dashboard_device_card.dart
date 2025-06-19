@@ -1,13 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
 class DashboardDeviceCard extends StatefulWidget {
-  const DashboardDeviceCard({super.key, required this.imageLink});
+  const DashboardDeviceCard({
+    super.key,
+    required this.imageLink,
+    required this.onDeviceTapped,
+  });
   final String imageLink;
+  final VoidCallback onDeviceTapped;
   @override
   State<DashboardDeviceCard> createState() => _DashboardDeviceCardState();
 }
@@ -17,10 +19,7 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        GetIt.I<Talker>().log('DashboardDeviceCard');
-        context.router.pushPath('/dashboard/tab1/thermostat');
-      },
+      onTap: widget.onDeviceTapped,
       borderRadius: BorderRadius.circular(20),
       child: Card(
         color: switched ? Colors.black : Colors.white,

@@ -56,7 +56,10 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
               ),
               itemCount: 4, // Example number of devices
               itemBuilder: (context, index) {
-                return DashboardDeviceCard(imageLink: kImagesList[index]);
+                return DashboardDeviceCard(
+                  imageLink: kImagesList[index],
+                  onDeviceTapped: () {},
+                );
               },
             ),
           ),

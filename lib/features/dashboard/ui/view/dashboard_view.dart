@@ -98,39 +98,6 @@ class _DashboardViewState extends State<DashboardView>
                 ),
               ],
             ),
-            // TabBar(
-            //   isScrollable: true,
-            //   tabAlignment: TabAlignment.start,
-
-            //   padding: EdgeInsets.zero,
-            //   dividerColor: Colors.transparent,
-            //   indicatorColor: Colors.transparent,
-
-            //   controller: _tabController,
-
-            //   tabs: [
-            //     // DashboardTab(
-            //     //   title: 'Living Room',
-            //     //   isSelected: _tabController.index == 0,
-            //     //   icon: Icons.dashboard_outlined,
-            //     // ),
-            //     // DashboardTab(
-            //     //   title: 'Bedroom',
-            //     //   isSelected: _tabController.index == 1,
-            //     //   icon: Icons.bedroom_parent_outlined,
-            //     // ),
-            //     // DashboardTab(
-            //     //   title: 'Kitchen',
-            //     //   icon: Icons.kitchen_outlined,
-            //     //   isSelected: _tabController.index == 2,
-            //     // ),
-            //     // DashboardTab(
-            //     //   title: 'Camera',
-            //     //   icon: Icons.security,
-            //     //   isSelected: _tabController.index == 3,
-            //     // ),
-            //   ],
-            // ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,

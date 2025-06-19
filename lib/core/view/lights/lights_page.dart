@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class LightsScreen extends StatefulWidget {
   const LightsScreen({super.key});
 
@@ -21,45 +23,40 @@ class _LightsScreenState extends State<LightsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF1C1C1E),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(flex: 2),
-              // Percentage Text
-              Text(
-                '${(_sliderValue * 100).toInt()}%',
-                style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                '1 hour ago',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const Spacer(flex: 1),
-              Image.asset(
-                'assets/images/lights_front.png', // Replace with your image path
-                width: 200,
-                height: 200,
-              ),
-
-              // The custom slider widget
-              OpacityLights(value: _sliderValue, onChanged: _onLightsChanged),
-              const Spacer(flex: 2),
-
-              // Bottom control buttons
-              _buildControlButtons(),
-              const Spacer(flex: 1),
-            ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(flex: 2),
+          // Percentage Text
+          Text(
+            '${(_sliderValue * 100).toInt()}%',
+            style: const TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
-        ),
+          const SizedBox(height: 8),
+          const Text(
+            '1 hour ago',
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          const Spacer(flex: 1),
+          Image.asset(
+            'assets/images/lights_front.png', // Replace with your image path
+            width: 200,
+            height: 200,
+          ),
+
+          // The custom slider widget
+          OpacityLights(value: _sliderValue, onChanged: _onLightsChanged),
+          const Spacer(flex: 2),
+
+          // Bottom control buttons
+          _buildControlButtons(),
+          const Spacer(flex: 1),
+        ],
       ),
     );
   }
