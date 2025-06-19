@@ -32,7 +32,9 @@ class _AutomationViewState extends State<AutomationView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
         toolbarHeight: 60,
         leadingWidth: 80,
         actionsPadding: const EdgeInsets.only(right: 8, top: 12),
@@ -58,15 +60,28 @@ class _AutomationViewState extends State<AutomationView>
             TabBar(
               controller: _tabController,
               dividerColor: Colors.transparent,
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.zero,
               tabAlignment: TabAlignment.start,
-              indicatorPadding: EdgeInsets.all(0),
+              indicatorPadding: EdgeInsets.zero,
               isScrollable: true,
 
               tabs: const [
-                Tab(icon: Icon(Icons.search)),
-                Tab(text: 'My Routines'),
-                Tab(text: 'Discover'),
+                Tab(icon: Icon(Icons.search, color: Colors.white)),
+                Tab(
+                  child: Text(
+                    'My Routines',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    'Discover',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 20),
@@ -75,8 +90,8 @@ class _AutomationViewState extends State<AutomationView>
               child: TabBarView(
                 controller: _tabController,
                 children: const [
+                  Center(child: Text('Search Automation')),
                   MyRoutinesView(),
-                  Center(child: Text('Security Settings')),
                   Center(child: Text('Scenes Management')),
                 ],
               ),

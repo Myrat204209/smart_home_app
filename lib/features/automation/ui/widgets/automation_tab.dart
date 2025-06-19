@@ -14,21 +14,15 @@ class AutomationTab extends StatelessWidget {
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: !isSelected ? Colors.white : Colors.black,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            child: Tab(height: 30, text: title),
-          ),
-        ),
-      ],
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: !isSelected ? Colors.white : Colors.black,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+        child: Tab(height: 30, text: title),
+      ),
     );
   }
 }

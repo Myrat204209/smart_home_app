@@ -34,7 +34,7 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
               'Devices',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: EdgeInsets.zero,
             trailing: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: IconButton(
@@ -47,7 +47,7 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
           ),
           Expanded(
             child: GridView.builder(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.zero,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 8.0,

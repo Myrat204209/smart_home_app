@@ -35,11 +35,12 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
         // TabBar for different routine categories
         TabBar(
           controller: _tabController,
+          labelPadding: EdgeInsets.symmetric(horizontal: 4),
           dividerColor: Colors.transparent,
-          padding: EdgeInsets.all(0),
+          padding: EdgeInsets.zero,
           tabAlignment: TabAlignment.start,
           indicatorColor: Colors.green.withAlpha(200),
-          indicatorPadding: EdgeInsets.all(0),
+          indicatorPadding: EdgeInsets.zero,
           isScrollable: true,
           tabs: const [
             AutomationTab(
