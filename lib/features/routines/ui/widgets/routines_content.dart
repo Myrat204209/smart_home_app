@@ -14,7 +14,6 @@ class RoutinesContent extends StatelessWidget {
       backgroundColor: Colors.lightBlue.shade300,
       appBar: AppBar(
         backgroundColor: Colors.lightBlue.shade300,
-
         leading: Icon(Icons.qr_code_rounded, size: 35, color: Colors.white),
         actions: [
           IconButtonSmall.small(icon: Icons.house, onPressed: () {}),

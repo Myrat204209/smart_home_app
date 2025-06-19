@@ -1,4 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        IconButton,
+        Icon,
+        Colors,
+        VoidCallback,
+        VisualDensity,
+        EdgeInsets,
+        IconData;
 
 extension IconButtonSmall on IconButton {
   static IconButton small({
