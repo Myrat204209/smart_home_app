@@ -1,8 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class MyRoutinesCollapsibleView extends StatefulWidget {
-  const MyRoutinesCollapsibleView({super.key});
+  const MyRoutinesCollapsibleView({
+    super.key,
+    required this.title,
+  });
 
+  final String title ;
   @override
   State<MyRoutinesCollapsibleView> createState() =>
       _MyRoutinesCollapsibleViewState();
@@ -44,82 +49,64 @@ class _MyRoutinesCollapsibleViewState extends State<MyRoutinesCollapsibleView> {
               _myCustomExpansibleController.expand();
             }
           },
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.deepPurple.shade200,
-              borderRadius: BorderRadius.circular(12.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+          child: ListTile(
+            title: Text(
+              widget.title,
+              style: TextStyle(
+                fontSize: 15.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            padding: const EdgeInsets.all(18.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Click Me to Reveal!',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                RotationTransition(
-                  turns: Tween(begin: 0.0, end: 0.5).animate(animation),
-                  child: Icon(
-                    _myCustomExpansibleController.isExpanded
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
-                    size: 28,
-                  ),
-                ),
-              ],
+            trailing: RotationTransition(
+              turns: Tween(begin: 0.0, end: 0.5).animate(animation),
+              child: Icon(
+                _myCustomExpansibleController.isExpanded
+                    ? Icons.keyboard_arrow_up
+                    : Icons.keyboard_arrow_down,
+                color: Colors.deepPurple,
+                size: 28,
+              ),
             ),
+            // ),
           ),
         );
       },
       bodyBuilder: (BuildContext context, Animation<double> animation) {
-        return SizeTransition(
-          sizeFactor: animation,
-          axisAlignment: -1.0,
-          child: FadeTransition(
-            opacity: animation,
-            child: Container(
-              margin: const EdgeInsets.only(top: 10.0),
-              padding: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: Colors.deepPurple.shade50,
-                borderRadius: BorderRadius.circular(12.0),
-                border: Border.all(color: Colors.deepPurple.shade100, width: 2),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '🎉 Voila! Here\'s your secret content.',
-                    style: TextStyle(fontSize: 16.0, color: Colors.black87),
-                  ),
-                  SizedBox(height: 10.0),
-                  Text(
-                    'You can put anything here: forms, images, lists, or even other expandable widgets!',
-                    style: TextStyle(fontSize: 14.0, color: Colors.grey),
-                  ),
-                  SizedBox(height: 10.0),
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle, color: Colors.green),
-                      SizedBox(width: 8),
-                      Text('Fully customizable layout'),
-                    ],
-                  ),
-                ],
-              ),
+        return SizedBox(
+          height: 300,
+          child: GridView.builder(
+            itemCount: 3,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1.5,
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
             ),
+            itemBuilder: (context, index) {
+              return Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.play_circle_fill,
+                      size: 50,
+                      color: Colors.deepPurple,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Routine ${index + 1}',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         );
       },
@@ -130,8 +117,6 @@ class _MyRoutinesCollapsibleViewState extends State<MyRoutinesCollapsibleView> {
             Widget body,
             Animation<double> animation,
           ) {
-            // Here, you could apply more complex animations or wrap the header/body
-            // in different widgets based on the expansion state.
             return Column(children: [header, body]);
           },
       duration: const Duration(milliseconds: 400),

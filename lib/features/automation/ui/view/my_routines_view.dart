@@ -66,7 +66,15 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
           child: TabBarView(
             controller: _tabController,
             children: [
-              MyRoutinesCollapsibleView(),
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    MyRoutinesCollapsibleView(title: 'Manually run routines'),
+                    MyRoutinesCollapsibleView(title: 'Automatic routines'),
+                  ],
+                ),
+              ),
 
               Center(child: Text('Favorite Routines')),
               Center(child: Text('Scheduled Routines')),
