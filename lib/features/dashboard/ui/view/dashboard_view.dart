@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_home_app/core/extensions/tab_bar_extensions.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
 
 class DashboardView extends StatefulWidget {
@@ -74,16 +75,7 @@ class _DashboardViewState extends State<DashboardView>
         padding: const EdgeInsets.only(top: 16),
         child: Column(
           children: [
-            TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-
-              padding: EdgeInsets.zero,
-              dividerColor: Colors.transparent,
-              indicatorColor: Colors.transparent,
-
-              controller: _tabController,
-
+            TabBarExtensions.custom(
               tabs: [
                 DashboardTab(
                   title: 'Living Room',
@@ -107,13 +99,44 @@ class _DashboardViewState extends State<DashboardView>
                 ),
               ],
             ),
+            // TabBar(
+            //   isScrollable: true,
+            //   tabAlignment: TabAlignment.start,
+
+            //   padding: EdgeInsets.zero,
+            //   dividerColor: Colors.transparent,
+            //   indicatorColor: Colors.transparent,
+
+            //   controller: _tabController,
+
+            //   tabs: [
+            //     // DashboardTab(
+            //     //   title: 'Living Room',
+            //     //   isSelected: _tabController.index == 0,
+            //     //   icon: Icons.dashboard_outlined,
+            //     // ),
+            //     // DashboardTab(
+            //     //   title: 'Bedroom',
+            //     //   isSelected: _tabController.index == 1,
+            //     //   icon: Icons.bedroom_parent_outlined,
+            //     // ),
+            //     // DashboardTab(
+            //     //   title: 'Kitchen',
+            //     //   icon: Icons.kitchen_outlined,
+            //     //   isSelected: _tabController.index == 2,
+            //     // ),
+            //     // DashboardTab(
+            //     //   title: 'Camera',
+            //     //   icon: Icons.security,
+            //     //   isSelected: _tabController.index == 3,
+            //     // ),
+            //   ],
+            // ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  DashboardDevicesGrid(
-                    
-                  ),
+                  DashboardDevicesGrid(),
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),

@@ -29,12 +29,11 @@ class RoutinesContent extends StatelessWidget {
           children: [
             RoutinesTabBar(
               routineTabController: _tabController,
+                // Tab(icon: Icon(Icons.search, color: Colors.white)),
               routineTabs: [
                 TabExtensions.custom(icon: Icons.search),
-                // Tab(icon: Icon(Icons.search, color: Colors.white)),
                 TabExtensions.custom(text: 'My Routines'),
                 TabExtensions.custom(text: 'Discover'),
-                TabExtensions.custom(text: 'My Routines'),
 
                 Tab(
                   child: Text(
