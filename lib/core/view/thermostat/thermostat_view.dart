@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
 
 class ClimateControlScreen extends StatefulWidget {
+  const ClimateControlScreen({super.key});
+
   @override
   _ClimateControlScreenState createState() => _ClimateControlScreenState();
 }
@@ -23,7 +25,8 @@ class _ClimateControlScreenState extends State<ClimateControlScreen> {
     double normalizedAngle = (angle + math.pi / 2) / (2 * math.pi);
     if (normalizedAngle < 0) normalizedAngle += 1;
 
-    final newTemperature = _minTemperature + 
+    final newTemperature =
+        _minTemperature +
         (normalizedAngle * (_maxTemperature - _minTemperature));
 
     setState(() {
@@ -55,7 +58,7 @@ class _ClimateControlScreenState extends State<ClimateControlScreen> {
               onPanUpdate: (details) {
                 _updateTemperature(details.localPosition, const Size(300, 300));
               },
-              child: Container(
+              child: SizedBox(
                 width: 300,
                 height: 300,
                 child: Stack(
@@ -105,10 +108,7 @@ class _ClimateControlScreenState extends State<ClimateControlScreen> {
                 // Humidity Display
                 Text(
                   'Humidity 32%',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.grey[600],
-                  ),
+                  style: TextStyle(fontSize: 16.0, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 24.0),
                 // Schedule Information
@@ -117,18 +117,12 @@ class _ClimateControlScreenState extends State<ClimateControlScreen> {
                   children: [
                     Text(
                       '20° from 00:00 to 8:00',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.grey[500],
-                      ),
+                      style: TextStyle(fontSize: 14.0, color: Colors.grey[500]),
                     ),
                     const SizedBox(height: 4.0),
                     Text(
                       '24° from 08:00 to 00:00',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.grey[500],
-                      ),
+                      style: TextStyle(fontSize: 14.0, color: Colors.grey[500]),
                     ),
                   ],
                 ),
@@ -172,7 +166,8 @@ class TemperatureGaugePainter extends CustomPainter {
     );
 
     // Calculate current temperature progress
-    final tempProgress = (temperature - minTemperature) / (maxTemperature - minTemperature);
+    final tempProgress =
+        (temperature - minTemperature) / (maxTemperature - minTemperature);
     final activeTicks = (tickCount * tempProgress).round();
 
     // Draw background ticks (grey)
@@ -185,7 +180,7 @@ class TemperatureGaugePainter extends CustomPainter {
     for (int i = 0; i < activeTicks; i++) {
       final angle = (i / tickCount) * 2 * math.pi - math.pi / 2;
       final progress = i / tickCount;
-      
+
       // Sample color from gradient
       final color = _getGradientColor(progress);
       _drawTick(canvas, center, radius, angle, color, true);
@@ -212,7 +207,14 @@ class TemperatureGaugePainter extends CustomPainter {
     canvas.drawCircle(thumbPosition, 4, innerThumbPaint);
   }
 
-  void _drawTick(Canvas canvas, Offset center, double radius, double angle, Color color, bool isActive) {
+  void _drawTick(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double angle,
+    Color color,
+    bool isActive,
+  ) {
     final tickPaint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
@@ -221,28 +223,25 @@ class TemperatureGaugePainter extends CustomPainter {
 
     final tickLength = isActive ? 12.0 : 8.0;
     final startRadius = radius - tickLength;
-    
+
     final startPoint = Offset(
       center.dx + startRadius * math.cos(angle),
       center.dy + startRadius * math.sin(angle),
     );
-    
+
     final endPoint = Offset(
       center.dx + radius * math.cos(angle),
       center.dy + radius * math.sin(angle),
     );
 
     // Draw as small arc instead of line for better visual effect
-    final rect = Rect.fromCircle(center: center, radius: (startRadius + radius) / 2);
-    final sweepAngle = 0.05; // Small arc angle
-    
-    canvas.drawArc(
-      rect,
-      angle - sweepAngle / 2,
-      sweepAngle,
-      false,
-      tickPaint,
+    final rect = Rect.fromCircle(
+      center: center,
+      radius: (startRadius + radius) / 2,
     );
+    final sweepAngle = 0.05; // Small arc angle
+
+    canvas.drawArc(rect, angle - sweepAngle / 2, sweepAngle, false, tickPaint);
   }
 
   Color _getGradientColor(double progress) {
@@ -262,7 +261,7 @@ class TemperatureGaugePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant TemperatureGaugePainter oldDelegate) {
     return oldDelegate.temperature != temperature ||
-           oldDelegate.minTemperature != minTemperature ||
-           oldDelegate.maxTemperature != maxTemperature;
+        oldDelegate.minTemperature != minTemperature ||
+        oldDelegate.maxTemperature != maxTemperature;
   }
 }
