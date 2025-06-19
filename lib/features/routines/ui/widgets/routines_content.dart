@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:smart_home_app/core/core.dart';
 import 'package:smart_home_app/features/routines/ui/ui.dart';
 
 class RoutinesContent extends StatelessWidget {
-  const RoutinesContent({
-    super.key,
-    required TabController tabController,
-  }) : _tabController = tabController;
+  const RoutinesContent({super.key, required TabController tabController})
+    : _tabController = tabController;
 
   final TabController _tabController;
 
@@ -15,33 +14,14 @@ class RoutinesContent extends StatelessWidget {
       backgroundColor: Colors.lightBlue.shade300,
       appBar: AppBar(
         backgroundColor: Colors.lightBlue.shade300,
-    
+
         leading: Icon(Icons.qr_code_rounded, size: 35, color: Colors.white),
         actions: [
-          IconButtonSmall.small(
-            icon: Icons.notifications,
-            onPressed: () {},
-          ),
-          // IconButton(
-          //   visualDensity: VisualDensity.compact,
-          //   padding: EdgeInsets.zero,
-          //   icon: const Icon(Icons.house, size: 30, color: Colors.white),
-          //   onPressed: () {},
-          // ),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            padding: EdgeInsets.zero,
-            icon: const Icon(Icons.add, size: 30, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            padding: EdgeInsets.zero,
-            icon: const Icon(Icons.more_vert, size: 30, color: Colors.white),
-            onPressed: () {},
-          ),
+          IconButtonSmall.small(icon: Icons.house, onPressed: () {}),
+          IconButtonSmall.small(icon: Icons.add, onPressed: () {}),
+          IconButtonSmall.small(icon: Icons.more_vert, onPressed: () {}),
         ],
-    
+
         title: const Text(
           'Routines',
           style: TextStyle(
@@ -63,7 +43,7 @@ class RoutinesContent extends StatelessWidget {
               tabAlignment: TabAlignment.start,
               indicatorPadding: EdgeInsets.zero,
               isScrollable: true,
-    
+
               tabs: const [
                 Tab(icon: Icon(Icons.search, color: Colors.white)),
                 Tab(
@@ -98,21 +78,6 @@ class RoutinesContent extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-
-extension IconButtonSmall on IconButton {
-  static IconButton small({
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return IconButton(
-      visualDensity: VisualDensity.compact,
-      padding: EdgeInsets.zero,
-      icon: Icon(icon, size: 30, color: Colors.white),
-      onPressed: onPressed,
     );
   }
 }
