@@ -7,7 +7,7 @@ class AutomationTab extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
-    required this.isSelected, 
+    required this.isSelected,
   });
   final String title;
   final IconData icon;
@@ -20,28 +20,12 @@ class AutomationTab extends StatelessWidget {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
             color: !isSelected ? Colors.white : Colors.black,
           ),
-          child: SizedBox.square(
-            dimension: 40,
-            child: Tab(
-              height: 30,
-              icon: Icon(
-                icon,
-                size: 30,
-                color: isSelected ? Colors.white : Colors.grey[400],
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            child: Tab(height: 30, text: title),
           ),
         ),
       ],
