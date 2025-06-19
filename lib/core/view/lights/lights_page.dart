@@ -1,21 +1,19 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-@RoutePage()
-class SliderScreen extends StatefulWidget {
-  const SliderScreen({super.key});
+class LightsScreen extends StatefulWidget {
+  const LightsScreen({super.key});
 
   @override
-  State<SliderScreen> createState() => _SliderScreenState();
+  State<LightsScreen> createState() => _LightsScreenState();
 }
 
-class _SliderScreenState extends State<SliderScreen> {
+class _LightsScreenState extends State<LightsScreen> {
   // The current value of the slider, from 0.0 to 1.0.
   // This will control the fill level and the percentage display.
   double _sliderValue = 0.7;
 
   // Callback function to update the slider value from the child widget.
-  void _onSliderChanged(double value) {
+  void _onLightsChanged(double value) {
     setState(() {
       _sliderValue = value;
     });
@@ -48,7 +46,7 @@ class _SliderScreenState extends State<SliderScreen> {
               const Spacer(flex: 1),
 
               // The custom slider widget
-              OpacitySlider(value: _sliderValue, onChanged: _onSliderChanged),
+              OpacityLights(value: _sliderValue, onChanged: _onLightsChanged),
               const Spacer(flex: 2),
 
               // Bottom control buttons
@@ -98,24 +96,24 @@ class _SliderScreenState extends State<SliderScreen> {
 }
 
 /// A custom vertical slider widget that controls opacity/brightness.
-class OpacitySlider extends StatefulWidget {
+class OpacityLights extends StatefulWidget {
   /// The current value of the slider, from 0.0 to 1.0.
   final double value;
 
   /// Callback for when the slider value changes.
   final ValueChanged<double> onChanged;
 
-  const OpacitySlider({
+  const OpacityLights({
     super.key,
     required this.value,
     required this.onChanged,
   });
 
   @override
-  State<OpacitySlider> createState() => _OpacitySliderState();
+  State<OpacityLights> createState() => _OpacityLightsState();
 }
 
-class _OpacitySliderState extends State<OpacitySlider> {
+class _OpacityLightsState extends State<OpacityLights> {
   void _handleVerticalDragUpdate(DragUpdateDetails details) {
     // Get the render box of the widget to calculate the local position.
     final box = context.findRenderObject() as RenderBox;
@@ -138,7 +136,7 @@ class _OpacitySliderState extends State<OpacitySlider> {
         height: 240,
         // CustomPaint uses our painter to draw the slider.
         child: CustomPaint(
-          painter: _SliderPainter(
+          painter: _LightsPainter(
             value: widget.value,
             activeColor: Colors.orange,
           ),
@@ -149,11 +147,11 @@ class _OpacitySliderState extends State<OpacitySlider> {
 }
 
 /// The CustomPainter responsible for drawing the slider.
-class _SliderPainter extends CustomPainter {
+class _LightsPainter extends CustomPainter {
   final double value; // The slider's value (0.0 to 1.0)
   final Color activeColor; // The main color of the slider fill
 
-  _SliderPainter({required this.value, required this.activeColor});
+  _LightsPainter({required this.value, required this.activeColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -223,7 +221,7 @@ class _SliderPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _SliderPainter oldDelegate) {
+  bool shouldRepaint(covariant _LightsPainter oldDelegate) {
     // The painter should repaint whenever the value changes.
     return oldDelegate.value != value;
   }

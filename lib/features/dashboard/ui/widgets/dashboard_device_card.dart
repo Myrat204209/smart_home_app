@@ -48,6 +48,7 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+
                         SizedBox.square(dimension: 5),
                         Text(
                           '60%',

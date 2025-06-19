@@ -1,279 +1,186 @@
-
 import 'dart:math' as math;
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-@RoutePage()
 class ThermostatScreen extends StatefulWidget {
   const ThermostatScreen({super.key});
 
   @override
-  State<ThermostatScreen> createState() => _ThermostatScreenState();
+  _ThermostatScreenState createState() => _ThermostatScreenState();
 }
 
 class _ThermostatScreenState extends State<ThermostatScreen> {
-  // Temperature is stored in Celsius. Let's assume a range from 10 to 35 degrees.
   double _temperature = 28.0;
-  final double _minTemp = 10.0;
-  final double _maxTemp = 35.0;
-
-  void _onTemperatureChanged(double temp) {
-    setState(() {
-      // Clamp the temperature to the allowed range.
-      _temperature = temp.clamp(_minTemp, _maxTemp);
-    });
-  }
+  final double _minTemp = 20.0;
+  final double _maxTemp = 30.0;
 
   @override
   Widget build(BuildContext context) {
-    // Convert temperature to a progress value between 0.0 and 1.0 for the painter.
-    double progress = (_temperature - _minTemp) / (_maxTemp - _minTemp);
-
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              const Text(
-                'Temperature',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
-                ),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Title Text
+            Text(
+              'Temperature',
+              style: TextStyle(
+                fontSize: 26.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[800],
               ),
-              const Spacer(),
-              // The main thermostat widget
-              ThermostatWidget(
-                progress: progress,
-                onChanged: (newProgress) {
-                  // Convert progress back to temperature.
-                  double newTemp = _minTemp + newProgress * (_maxTemp - _minTemp);
-                  _onTemperatureChanged(newTemp);
+            ),
+            // Core Temperature Gauge & Display
+            SizedBox(
+              width: 250,
+              height: 250,
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  final center = Offset(125, 125);
+                  final dragAngle = (details.localPosition - center).direction;
+                  final tempRange = _maxTemp - _minTemp;
+                  final angleRange = math.pi; // 180 degrees
+                  setState(() {
+                    _temperature =
+                        _minTemp +
+                        ((dragAngle + math.pi / 2) / angleRange) * tempRange;
+                    _temperature = _temperature.clamp(_minTemp, _maxTemp);
+                  });
                 },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Text(
-                      '${_temperature.round()}°',
-                      style: const TextStyle(
-                        fontSize: 80,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                    CustomPaint(
+                      painter: TemperatureGaugePainter(
+                        _temperature,
+                        _minTemp,
+                        _maxTemp,
                       ),
+                      child: Container(),
                     ),
-                    const Text(
-                      'Humidity 32%',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: _temperature.toStringAsFixed(0),
+                            style: TextStyle(
+                              fontSize: 90.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                          TextSpan(
+                            text: '°',
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey[800],
+                              fontFeatures: [FontFeature.superscripts()],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-              const Spacer(),
-              _buildScheduleInfo('20° from 00:00 to 8:00'),
-              const SizedBox(height: 8),
-              _buildScheduleInfo('24° from 08:00 to 00:00'),
-              const Spacer(),
-            ],
-          ),
+            ),
+            // Humidity Display
+            Text(
+              'Humidity 32%',
+              style: TextStyle(fontSize: 16.0, color: Colors.grey[600]),
+            ),
+            // Schedule Information
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '20° from 00:00 to 8:00',
+                  style: TextStyle(fontSize: 14.0, color: Colors.grey[500]),
+                ),
+                Text(
+                  '24° from 08:00 to 00:00',
+                  style: TextStyle(fontSize: 14.0, color: Colors.grey[500]),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
-
-  Widget _buildScheduleInfo(String text) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 16,
-        color: Colors.grey,
-      ),
-    );
-  }
 }
 
+class TemperatureGaugePainter extends CustomPainter {
+  final double currentTemp;
+  final double minTemp;
+  final double maxTemp;
 
-/// A thermostat widget with a circular dial.
-class ThermostatWidget extends StatefulWidget {
-  /// The current progress value, from 0.0 to 1.0.
-  final double progress;
-  /// Callback for when the progress value changes due to user interaction.
-  final ValueChanged<double> onChanged;
-  /// The child widget to display in the center.
-  final Widget child;
-
-  const ThermostatWidget({
-    super.key,
-    required this.progress,
-    required this.onChanged,
-    required this.child,
-  });
-
-  @override
-  State<ThermostatWidget> createState() => _ThermostatWidgetState();
-}
-
-class _ThermostatWidgetState extends State<ThermostatWidget> {
-  // This key is used to get the size and position of the widget.
-  final GlobalKey _paintKey = GlobalKey();
-
-  void _handlePanUpdate(DragUpdateDetails details) {
-    // Get the RenderBox to find the center of the widget.
-    final RenderBox? box = _paintKey.currentContext?.findRenderObject() as RenderBox?;
-    if (box == null) return;
-
-    final position = box.globalToLocal(details.globalPosition);
-    final center = Offset(box.size.width / 2, box.size.height / 2);
-    
-    // Calculate the angle of the touch point relative to the center.
-    final vector = position - center;
-    double angle = math.atan2(vector.dy, vector.dx) + math.pi / 2;
-
-    // Normalize the angle to be within the painter's range (3/4 of a circle).
-    // The painter starts at 135 degrees and ends at 45 degrees.
-    const fullAngle = 1.5 * math.pi; // 270 degrees
-    const startAngle = -2.25 * math.pi / 2; // -135 degrees
-    
-    // Adjust angle to be positive
-    if (angle < 0) angle += 2 * math.pi;
-
-    // Find the closest point on the arc
-    if (angle > math.pi && angle < startAngle + fullAngle) {
-       // We are in the dead zone, do nothing
-    } else {
-        double progress;
-        if (angle > startAngle + fullAngle) {
-          progress = (angle - (2 * math.pi) - startAngle) / fullAngle;
-        } else {
-          progress = (angle - startAngle) / fullAngle;
-        }
-        widget.onChanged(progress.clamp(0.0, 1.0));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onPanUpdate: _handlePanUpdate,
-      onPanStart: (details) {},
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            key: _paintKey,
-            width: 300,
-            height: 300,
-            child: CustomPaint(
-              painter: _ThermostatPainter(
-                progress: widget.progress,
-              ),
-            ),
-          ),
-          // Place the child widget (temperature text) in the center.
-          Container(
-             width: 220,
-             height: 220,
-             alignment: Alignment.center,
-             child: widget.child
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-/// The CustomPainter responsible for drawing the thermostat dial.
-class _ThermostatPainter extends CustomPainter {
-  final double progress; // The thermostat's progress (0.0 to 1.0)
-
-  _ThermostatPainter({required this.progress});
+  TemperatureGaugePainter(this.currentTemp, this.minTemp, this.maxTemp);
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2;
-    
-    // The dial is not a full circle, it's 270 degrees (1.5 * pi radians).
-    // It starts at -225 degrees (-1.25 * pi) and sweeps 270 degrees.
-    const startAngle = -2.25 * math.pi / 2;
-    const sweepAngle = 1.5 * math.pi;
-    final endAngle = startAngle + sweepAngle;
-
-    // Define the bounding rectangle for the arc.
-    final rect = Rect.fromCircle(center: center, radius: radius);
-
-    // --- 1. Draw Background Ticks ---
-    final backgroundPaint = Paint()
-      ..color = Colors.grey.shade300
+    final radius = size.width / 2 - 20;
+    final tickPaint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10
-      ..strokeCap = StrokeCap.round;
+      ..strokeWidth = 2.0
+      ..color = Colors.grey[300]!;
 
-    final totalTicks = 60;
-    for (int i = 0; i < totalTicks; i++) {
-      final tickProgress = i / totalTicks;
-      final angle = startAngle + tickProgress * sweepAngle;
-      // Draw a small arc for each tick
-      canvas.drawArc(rect, angle, 0.02, false, backgroundPaint);
+    // Draw background ticks
+    for (int i = 0; i <= 20; i++) {
+      final angle = -math.pi / 2 + (math.pi / 20) * i;
+      final startPoint =
+          center +
+          Offset(
+            math.cos(angle) * (radius - 10),
+            math.sin(angle) * (radius - 10),
+          );
+      final endPoint =
+          center + Offset(math.cos(angle) * radius, math.sin(angle) * radius);
+      canvas.drawLine(startPoint, endPoint, tickPaint);
     }
 
-    // --- 2. Draw Foreground Gradient Ticks ---
-    final foregroundPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 10
-      ..strokeCap = StrokeCap.round;
-
-    // Define the gradient from blue to red.
+    // Draw gradient ticks
     final gradient = SweepGradient(
-      center: Alignment.center,
-      startAngle: startAngle,
-      endAngle: endAngle,
-      colors: [Colors.blue, Colors.red],
-      transform: const GradientRotation(math.pi / 2), // Rotate to align with the arc
+      startAngle: -math.pi / 2,
+      endAngle: math.pi / 2,
+      colors: [Colors.blue[400]!, Colors.purple, Colors.redAccent],
+      stops: [0.0, 0.5, 1.0],
     );
-    foregroundPaint.shader = gradient.createShader(rect);
-    
-    final activeSweepAngle = progress * sweepAngle;
-    final activeTicks = (totalTicks * progress).round();
-     for (int i = 0; i < activeTicks; i++) {
-      final tickProgress = i / totalTicks;
-      final angle = startAngle + tickProgress * sweepAngle;
-      canvas.drawArc(rect, angle, 0.02, false, foregroundPaint);
+    final tempProgress = (currentTemp - minTemp) / (maxTemp - minTemp);
+    for (int i = 0; i <= 20 * tempProgress; i++) {
+      final angle = -math.pi / 2 + (math.pi / 20) * i;
+      final rect = Rect.fromCircle(center: center, radius: radius - 5);
+      final paint = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 4.0
+        ..shader = gradient.createShader(
+          rect,
+          textDirection: TextDirection.ltr,
+        );
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius - 5),
+        angle - 0.05,
+        0.1,
+        false,
+        paint,
+      );
     }
 
-
-    // --- 3. Draw the Draggable Handle ---
-    final handleAngle = startAngle + activeSweepAngle;
-    final handlePoint = Offset(
-      center.dx + radius * math.cos(handleAngle),
-      center.dy + radius * math.sin(handleAngle),
-    );
-
-    final handlePaint = Paint()
-      ..color = Colors.red // Using the end color of the gradient
-      ..style = PaintingStyle.fill;
-      
-    final handleShadowPaint = Paint()
-      ..color = Colors.black.withOpacity(0.3)
-      ..style = PaintingStyle.fill
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
-
-    // Draw shadow first
-    canvas.drawCircle(handlePoint, 16, handleShadowPaint);
-    // Draw handle on top
-    canvas.drawCircle(handlePoint, 14, handlePaint);
+    // Draw indicator thumb
+    final thumbAngle = -math.pi / 2 + (math.pi * tempProgress);
+    final thumbPosition =
+        center +
+        Offset(math.cos(thumbAngle) * radius, math.sin(thumbAngle) * radius);
+    final thumbPaint = Paint()..color = Colors.red;
+    canvas.drawCircle(thumbPosition, 8.0, thumbPaint);
   }
 
   @override
-  bool shouldRepaint(covariant _ThermostatPainter oldDelegate) {
-    // Repaint only if the progress value has changed.
-    return oldDelegate.progress != progress;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
