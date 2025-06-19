@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class DashboardTab extends StatelessWidget {
-  const DashboardTab({
+class AutomationTab extends StatelessWidget {
+  const AutomationTab({
     super.key,
     required this.title,
     required this.icon,
@@ -24,12 +24,12 @@ class DashboardTab extends StatelessWidget {
             color: !isSelected ? Colors.white : Colors.black,
           ),
           child: SizedBox.square(
-            dimension: 70,
+            dimension: 40,
             child: Tab(
-              height: 60,
+              height: 30,
               icon: Icon(
                 icon,
-                size: 40,
+                size: 30,
                 color: isSelected ? Colors.white : Colors.grey[400],
               ),
             ),
