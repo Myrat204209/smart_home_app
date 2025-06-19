@@ -44,6 +44,11 @@ class _LightsScreenState extends State<LightsScreen> {
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const Spacer(flex: 1),
+              Image.asset(
+                'assets/images/lights_front.png', // Replace with your image path
+                width: 200,
+                height: 200,
+              ),
 
               // The custom slider widget
               OpacityLights(value: _sliderValue, onChanged: _onLightsChanged),
