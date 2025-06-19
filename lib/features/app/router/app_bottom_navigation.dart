@@ -14,7 +14,7 @@ class AppBottomNavigation extends StatelessWidget {
           FadeTransition(opacity: animation, child: child),
       routes: [
         DashboardRoute(),
-        AutomationRoute(),
+        RoutinesRoute(),
         ProfileRoute(),
       ],
 

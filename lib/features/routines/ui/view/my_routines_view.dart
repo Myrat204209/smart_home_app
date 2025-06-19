@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/automation/ui/ui.dart';
+import 'package:smart_home_app/features/routines/ui/ui.dart';
 
 class MyRoutinesView extends StatefulWidget {
   const MyRoutinesView({super.key});

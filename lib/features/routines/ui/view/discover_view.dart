@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/automation/ui/ui.dart';
+import 'package:smart_home_app/features/routines/ui/ui.dart';
 
 class DiscoverView extends StatefulWidget {
   const DiscoverView({super.key});

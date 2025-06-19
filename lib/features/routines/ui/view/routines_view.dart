@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/automation/ui/ui.dart';
+import 'package:smart_home_app/features/routines/ui/ui.dart';
 
-class AutomationView extends StatefulWidget {
-  const AutomationView({super.key});
+class RoutinesView extends StatefulWidget {
+  const RoutinesView({super.key});
 
   @override
-  State<AutomationView> createState() => _AutomationViewState();
+  State<RoutinesView> createState() => _RoutinesViewState();
 }
 
-class _AutomationViewState extends State<AutomationView>
+class _RoutinesViewState extends State<RoutinesView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
