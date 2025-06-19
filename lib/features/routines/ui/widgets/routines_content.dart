@@ -26,24 +26,16 @@ class RoutinesContent extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RoutinesTabBar(
               routineTabController: _tabController,
-                // Tab(icon: Icon(Icons.search, color: Colors.white)),
+              // Tab(icon: Icon(Icons.search, color: Colors.white)),
               routineTabs: [
-                TabExtensions.custom(icon: Icons.search),
+                // TabExtensions.custom(icon: Icons.search),
+                Tab(icon: Icon(Icons.search, color: Colors.white)),
                 TabExtensions.custom(text: 'My Routines'),
                 TabExtensions.custom(text: 'Discover'),
-
-                Tab(
-                  child: Text(
-                    'Discover',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
               ],
             ),
             SizedBox(height: 20),

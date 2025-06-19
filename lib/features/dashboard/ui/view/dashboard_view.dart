@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/core/extensions/tab_bar_extensions.dart';
+import 'package:smart_home_app/core/core.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
 
 class DashboardView extends StatefulWidget {
@@ -36,7 +36,7 @@ class _DashboardViewState extends State<DashboardView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 60,
+        toolbarHeight: 50,
         leadingWidth: 80,
 
         actionsPadding: EdgeInsets.only(right: 8, top: 12),
@@ -44,18 +44,16 @@ class _DashboardViewState extends State<DashboardView>
           padding: const EdgeInsets.only(left: 8, top: 12),
           child: CircleAvatar(
             radius: 45,
-
             backgroundColor: Colors.yellow,
             child: Icon(Icons.person, color: Colors.black, size: 35),
             // Image.network(),
           ),
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.search, size: 30, color: Colors.grey),
-            onPressed: () {
-              // Handle notification button press
-            },
+          IconButtonSmall.small(
+            icon: Icons.search,
+            color: Colors.grey,
+            onPressed: () {},
           ),
           VerticalDivider(
             width: 0.5,
@@ -63,19 +61,20 @@ class _DashboardViewState extends State<DashboardView>
             endIndent: 5,
             color: Colors.grey[500],
           ),
-          IconButton(
-            icon: Icon(Icons.menu_rounded, size: 30, color: Colors.grey),
-            onPressed: () {
-              // Handle notification button press
-            },
+          IconButtonSmall.small(
+            icon: Icons.menu_rounded,
+            color: Colors.grey,
+            onPressed: () {},
           ),
         ],
       ),
+
       body: Padding(
-        padding: const EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
             TabBarExtensions.custom(
+              tabController: _tabController,
               tabs: [
                 DashboardTab(
                   title: 'Living Room',

@@ -7,7 +7,7 @@ class DashboardTab extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
-    required this.isSelected, 
+    required this.isSelected,
   });
   final String title;
   final IconData icon;
@@ -24,9 +24,9 @@ class DashboardTab extends StatelessWidget {
             color: !isSelected ? Colors.white : Colors.black,
           ),
           child: SizedBox.square(
-            dimension: 70,
+            dimension: 60,
             child: Tab(
-              height: 60,
+              height: 50,
               icon: Icon(
                 icon,
                 size: 40,
@@ -39,7 +39,7 @@ class DashboardTab extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
