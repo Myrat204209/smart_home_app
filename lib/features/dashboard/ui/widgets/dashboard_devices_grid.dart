@@ -42,6 +42,7 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
                 icon: Icon(Icons.more_horiz_rounded),
                 onPressed: () {
                   // Navigate to add device page
+                  context.router.push(LightsRoute());
                 },
               ),
             ),

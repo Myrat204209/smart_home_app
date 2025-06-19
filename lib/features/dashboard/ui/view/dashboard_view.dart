@@ -98,6 +98,7 @@ class _DashboardViewState extends State<DashboardView>
                 ),
               ],
             ),
+
             Expanded(
               child: TabBarView(
                 controller: _tabController,
@@ -116,109 +117,14 @@ class _DashboardViewState extends State<DashboardView>
   }
 }
 
-// class DashboardView extends StatelessWidget {
-//   const DashboardView({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AutoTabsRouter.tabBar(
-//       physics: AlwaysScrollableScrollPhysics(),
-
-//       routes: [Tab1Route(), Tab2Route(), Tab3Route()],
-//       builder: (context, child, tabController) {
-//         return Scaffold(
-//           appBar: AppBar(
-//             toolbarHeight: 50,
-//             leadingWidth: 80,
-
-//             actionsPadding: EdgeInsets.only(right: 8, top: 12),
-//             leading: Padding(
-//               padding: const EdgeInsets.only(left: 8, top: 12),
-//               child: CircleAvatar(
-//                 radius: 45,
-//                 backgroundColor: Colors.yellow,
-//                 child: Icon(Icons.person, color: Colors.black, size: 35),
-//                 // Image.network(),
-//               ),
-//             ),
-//             actions: [
-//               IconButtonSmall.small(
-//                 icon: Icons.search,
-//                 color: Colors.grey,
-//                 onPressed: () {},
-//               ),
-//               VerticalDivider(
-//                 width: 0.5,
-//                 indent: 5,
-//                 endIndent: 5,
-//                 color: Colors.grey[500],
-//               ),
-//               IconButtonSmall.small(
-//                 icon: Icons.menu_rounded,
-//                 color: Colors.grey,
-//                 onPressed: () {},
-//               ),
-//             ],
-//           ),
-
-//           body: Padding(
-//             padding: const EdgeInsets.only(top: 10),
-//             child: Column(
-//               children: [
-//                 TabBarExtensions.custom(
-//                   tabController: tabController,
-//                   tabs: [
-//                     DashboardTab(
-//                       title: 'Living Room',
-//                       isSelected: tabController.index == 0,
-//                       icon: Icons.dashboard_outlined,
-//                     ),
-//                     DashboardTab(
-//                       title: 'Bedroom',
-//                       isSelected: tabController.index == 1,
-//                       icon: Icons.bedroom_parent_outlined,
-//                     ),
-//                     DashboardTab(
-//                       title: 'Kitchen',
-//                       icon: Icons.kitchen_outlined,
-//                       isSelected: tabController.index == 2,
-//                     ),
-//                     // DashboardTab(
-//                     //   title: 'Camera',
-//                     //   icon: Icons.security,
-//                     //   isSelected: tabController.index == 3,
-//                     // ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
-
-// Nested tab pages
 @RoutePage()
 class Tab1Page extends StatelessWidget {
   const Tab1Page({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        ColoredBox(color: Colors.green, child: SizedBox.square(dimension: 100)),
-        DashboardDevicesGrid(),
-        // DashboardDeviceCard(imageLink: kImagesList[0], onDeviceTapped: () {}),
-        Expanded(child: AutoRouter()),
-      ],
-    );
-    // ColoredBox(
-    //   color: Colors.red,
-    //   child: const Center(child: Text('Tab 1 Content')),
-    // );
+    return DashboardDevicesGrid();
+    // return const Center(child: Text('Tab 2 Content'));
   }
 }
 
@@ -228,7 +134,8 @@ class Tab2Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Tab 2 Content'));
+    return DashboardDevicesGrid();
+    // return const Center(child: Text('Tab 2 Content'));
   }
 }
 
@@ -238,6 +145,18 @@ class Tab3Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Tab 3 Content'));
+    return DashboardDevicesGrid();
+    // return const Center(child: Text('Tab 3 Content'));
+  }
+}
+
+@RoutePage()
+class Tab4Page extends StatelessWidget {
+  const Tab4Page({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DashboardDevicesGrid();
+    // return const Center(child: Text('Tab 4 Content'));
   }
 }

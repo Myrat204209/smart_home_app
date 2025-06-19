@@ -10,12 +10,7 @@ class LightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Lights'), centerTitle: true),
-      body: Column(
-        children: [
-          Expanded(child: AutoRouter()),
-          LightsView(),
-        ],
-      ),
+      body: LightsView(),
     );
   }
 }

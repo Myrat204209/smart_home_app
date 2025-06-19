@@ -35,8 +35,10 @@ class AppRouter extends RootStackRouter {
             ),
             AutoRoute(path: 'tab2', page: Tab2Route.page),
             AutoRoute(path: 'tab3', page: Tab3Route.page),
+            AutoRoute(path: 'tab4', page: Tab4Route.page),
           ],
         ),
+
         AutoRoute(page: RoutinesRoute.page, path: 'routines'),
         AutoRoute(page: ProfileRoute.page, path: 'profile'),
       ],

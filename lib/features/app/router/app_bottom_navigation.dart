@@ -43,7 +43,7 @@ class AppBottomNavigation extends StatelessWidget {
               tabsRouterIndex: tabsRouter.activeIndex,
               destinationIndex: 1,
               icon: Icons.auto_awesome,
-              label: 'Automation',
+              label: 'Routines',
             ),
             NavigationDestinationIcon(
               tabsRouterIndex: tabsRouter.activeIndex,
