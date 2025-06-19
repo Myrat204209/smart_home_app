@@ -21,20 +21,12 @@ class RoutinesContent extends StatelessWidget {
           IconButtonSmall.small(icon: Icons.more_vert, onPressed: () {}),
         ],
 
-        title: const Text(
-          'Routines',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        title: Text('Routines').titled(),
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            // TabBar for different automation categories
             TabBar(
               controller: _tabController,
               dividerColor: Colors.transparent,
