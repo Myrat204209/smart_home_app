@@ -92,7 +92,7 @@ class _AutomationViewState extends State<AutomationView>
                 children: const [
                   Center(child: Text('Search Automation')),
                   MyRoutinesView(),
-                  Center(child: Text('Scenes Management')),
+                  DiscoverView(),
                 ],
               ),
             ),
