@@ -16,12 +16,6 @@ Future<void> main() async {
   getIt.registerSingleton<AppRouter>(router);
 
   bootStrap(talker, () async {
-    // const defaultBaseUrl = 'http://172.16.25.24:8080';
-    // final httpClient = Http(defaultBaseUrl: defaultBaseUrl);
-
-    // HttpOverrides.global = MyHttpOverrides();
-
-    // Hive.registerAdapters();
     return App();
   });
 }

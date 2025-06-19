@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:smart_home_app/features/app/app.dart';
@@ -25,16 +24,14 @@ class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      
       debugShowCheckedModeBanner: false,
       // theme: AppTheme().themeData,
       themeMode: ThemeMode.system,
       routerConfig: _router.config(
-        navigatorObservers:
-            () => [
-              TalkerRouteObserver(_talker),
-              // SentryNavigatorObserver(),
-            ],
+        navigatorObservers: () => [
+          TalkerRouteObserver(_talker),
+          // SentryNavigatorObserver(),
+        ],
       ),
     );
   }

@@ -12,18 +12,18 @@ The heart of the app, providing an at-a-glance overview of your smart home:
 - **Status Overview**: Instantly view critical statuses like `Front Door: Locked`, `Temperature: 22°C`, or `3 Lights On` without tapping.
 - **Scene Shortcuts**: One-tap buttons to trigger routines like "I'm Home," "Good Night," or "Movie Time" for effortless control.
 
-### 2. Rooms / Groups
-Organize your devices by rooms for intuitive navigation:
-- **Room-based Navigation**: Swipe between or select rooms to view and control devices.
-- **Room-level Control**: Turn off all devices in a room with a single "Turn Off All" button.
-
-### 3. Automation / Routines
+### 2. Automation / Routines
 Make your home smarter with simple yet powerful automation:
 - **"If This, Then That" (IFTTT) Logic**: Create routines using a trigger-and-action format.
   - *Trigger (If)*: "When the Front Door unlocks..."
   - *Condition (And if)*: "...and it's after sunset..."
   - *Action (Then)*: "...turn on the Hallway Lights."
 - **Flexible Triggers**: Design automations based on device status, time of day, location (geofencing), or sensor data.
+
+### 3. Rooms / Groups
+Organize your devices by rooms for intuitive navigation:
+- **Room-based Navigation**: Swipe between or select rooms to view and control devices.
+- **Room-level Control**: Turn off all devices in a room with a single "Turn Off All" button.
 
 ## Getting Started
 
@@ -46,9 +46,13 @@ Make your home smarter with simple yet powerful automation:
    ```bash
    flutter pub get
    ```
-4. Run the app:
+4. Execute the code generation:
    ```bash
-   flutter run
+   dart run build_runner watch -d -v
+   ```
+5. Run the app:
+   ```bash
+   flutter run -t lib/main/main.dart
    ```
 
 ## Usage
@@ -59,9 +63,9 @@ Make your home smarter with simple yet powerful automation:
 5. **Monitor & Control**: Check real-time statuses and control devices from the dashboard or room views.
 
 ## Screenshots
-| Dashboard | Rooms | Automation |
+| Dashboard | Routines | Profile |
 |-----------|-------|------------|
-| ![Dashboard](https://via.placeholder.com/300x600.png?text=Dashboard) | ![Rooms](https://via.placeholder.com/300x600.png?text=Rooms) | ![Automation](https://via.placeholder.com/300x600.png?text=Automation) |
+| ![Dashboard](https://via.placeholder.com/300x600.png?text=Dashboard) | ![Routines](https://via.placeholder.com/300x600.png?text=Routines) | ![Profile](https://via.placeholder.com/300x600.png?text=Profile) |
 
 ## Contributing
 We welcome contributions! To get started:
