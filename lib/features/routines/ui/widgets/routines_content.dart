@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/core/core.dart';
-import 'package:smart_home_app/features/routines/ui/ui.dart';
+import 'package:smart_home_app/features/routines/routines.dart';
 
 class RoutinesContent extends StatelessWidget {
   const RoutinesContent({super.key, required TabController tabController})
@@ -27,22 +27,21 @@ class RoutinesContent extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            TabBar(
-              controller: _tabController,
-              dividerColor: Colors.transparent,
-              padding: EdgeInsets.zero,
-              tabAlignment: TabAlignment.start,
-              indicatorPadding: EdgeInsets.zero,
-              isScrollable: true,
+            RoutinesTabBar(
+              routineTabController: _tabController,
+              routineTabs:  [
 
-              tabs: const [
                 Tab(icon: Icon(Icons.search, color: Colors.white)),
                 Tab(
                   child: Text(
                     'My Routines',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
+                
                 Tab(
                   child: Text(
                     'Discover',

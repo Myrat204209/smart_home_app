@@ -43,17 +43,17 @@ class _DiscoverViewState extends State<DiscoverView>
           indicatorPadding: EdgeInsets.zero,
           isScrollable: true,
           tabs: const [
-            AutomationTab(
+            RoutinesTab(
               title: 'All',
               icon: Icons.all_inclusive,
               isSelected: false,
             ),
-            AutomationTab(
+            RoutinesTab(
               title: 'Favorites',
               icon: Icons.favorite,
               isSelected: false,
             ),
-            AutomationTab(
+            RoutinesTab(
               title: 'Scheduled',
               icon: Icons.schedule,
               isSelected: false,

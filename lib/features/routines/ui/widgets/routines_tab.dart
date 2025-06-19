@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class AutomationTab extends StatelessWidget {
-  const AutomationTab({
+class RoutinesTab extends StatelessWidget {
+  const RoutinesTab({
     super.key,
     required this.title,
     required this.icon,
