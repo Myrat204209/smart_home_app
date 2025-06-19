@@ -26,6 +26,9 @@ class AppRouter extends RootStackRouter {
                   path: 'lights',
                   page: LightsRoute.page,
                   initial: true,
+                  type: RouteType.custom(
+                    transitionsBuilder: TransitionsBuilders.fadeIn,
+                  ),
                 ),
                 // AutoRoute(path: 'thermostat', page: ThermostatRoute.page),
               ],

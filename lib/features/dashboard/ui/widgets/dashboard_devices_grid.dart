@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/dashboard/dashboard.dart';
+import 'package:smart_home_app/features/features.dart';
 
 const kImagesList = [
   'assets/images/speaker.png',
@@ -58,7 +59,19 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
               itemBuilder: (context, index) {
                 return DashboardDeviceCard(
                   imageLink: kImagesList[index],
-                  onDeviceTapped: () {},
+                  onDeviceTapped: () {
+                    context.router.push(LightsRoute());
+                    // context.router.pushPath(
+                    //   '/dashboard/tab1/lights',
+                    //   includePrefixMatches: true,
+                    //   onFailure: (failure) {
+                    //     GetIt.I<Talker>().error(
+                    //       'Failed to navigate to lights page: $failure',
+                    //     );
+                    //   },
+                    //   // queryParams: {'device': 'lights'},
+                    // );
+                  },
                 );
               },
             ),

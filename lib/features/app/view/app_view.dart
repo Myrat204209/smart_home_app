@@ -28,6 +28,7 @@ class _AppViewState extends State<AppView> {
       // theme: AppTheme().themeData,
       themeMode: ThemeMode.system,
       routerConfig: _router.config(
+
         navigatorObservers: () => [
           TalkerRouteObserver(_talker),
           // SentryNavigatorObserver(),
