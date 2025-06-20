@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
 
-class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
-  const AppTopBar({super.key});
+const kAppBarActionIcons = <IconData>[
+  CupertinoIcons.bell,
+  CupertinoIcons.search,
+  Icons.settings_outlined,
+];
 
+class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
+  const AppTopBar({super.key, required this.bottomIndex});
+
+  final int bottomIndex;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -60,9 +67,9 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       ),
 
       actions: [
-        IconButton.outlined(
+        IconButton(
           color: Color.fromARGB(146, 247, 247, 247),
-          icon: const Icon(CupertinoIcons.bell, color: Colors.black),
+          icon: Icon(kAppBarActionIcons[bottomIndex], color: Color(0xff666666)),
           onPressed: () {},
         ),
       ],

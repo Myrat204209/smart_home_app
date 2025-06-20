@@ -15,7 +15,7 @@ class AppBottomNavigation extends StatelessWidget {
         return [TalkerRouteObserver(GetIt.I<Talker>())];
       },
       appBarBuilder: (context, tabsRouter) {
-        return AppTopBar();
+        return AppTopBar(bottomIndex: tabsRouter.activeIndex,);
       },
       backgroundColor: Color(0xfffbfbfd),
       homeIndex: 0,
