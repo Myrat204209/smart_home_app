@@ -32,7 +32,7 @@ class _LightsViewState extends State<LightsView> {
             style: const TextStyle(
               fontSize: 48,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
           const SizedBox(height: 8),
