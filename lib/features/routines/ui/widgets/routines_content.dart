@@ -17,24 +17,22 @@ class RoutinesContent extends StatelessWidget {
         children: [
           RoutinesTabBar(
             routineTabController: _tabController,
-            // Tab(icon: Icon(Icons.search, color: Colors.white)),
             routineTabs: [
-              // TabExtensions.custom(icon: Icons.search),
-              Tab(icon: Icon(Icons.search, color: Colors.white)),
-              TabExtensions.custom(text: 'My Routines'),
-              TabExtensions.custom(text: 'Discover'),
+              TabExtensions.custom(
+                text: 'My Routines',
+                selected: _tabController.index == 0,
+              ),
+              TabExtensions.custom(
+                text: 'Discover',
+                selected: _tabController.index == 1,
+              ),
             ],
           ),
-          SizedBox(height: 20),
-          // Expanded widget to fill the remaining space with the tab views
+          SizedBox(height: 12),
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                Center(child: Text('Search Automation')),
-                MyRoutinesView(),
-                DiscoverView(),
-              ],
+              children: const [MyRoutinesView(), DiscoverView()],
             ),
           ),
         ],

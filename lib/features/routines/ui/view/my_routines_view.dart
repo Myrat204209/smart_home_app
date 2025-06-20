@@ -10,22 +10,22 @@ class MyRoutinesView extends StatefulWidget {
 
 class _MyRoutinesViewState extends State<MyRoutinesView>
     with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
+  late final TabController _myRoutinetabController;
 
   @override
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 3, vsync: this);
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {}
+    _myRoutinetabController = TabController(length: 3, vsync: this);
+    _myRoutinetabController.addListener(() {
+      if (_myRoutinetabController.indexIsChanging) {}
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _myRoutinetabController.dispose();
     super.dispose();
   }
 
@@ -33,18 +33,20 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // TabBar for different routine categories
+
         TabBar(
-          controller: _tabController,
+          controller: _myRoutinetabController,
           labelPadding: EdgeInsets.symmetric(horizontal: 4),
           dividerColor: Colors.transparent,
           padding: EdgeInsets.zero,
+          
           tabAlignment: TabAlignment.start,
           indicatorColor: Colors.green.withAlpha(200),
           indicatorPadding: EdgeInsets.zero,
           isScrollable: true,
           tabs: const [
             RoutinesTab(
+              
               title: 'All',
               icon: Icons.all_inclusive,
               isSelected: false,
@@ -64,7 +66,7 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
         // Expanded widget to fill the remaining space with the tab views
         Expanded(
           child: TabBarView(
-            controller: _tabController,
+            controller: _myRoutinetabController,
             children: [
               SingleChildScrollView(
                 child: Column(

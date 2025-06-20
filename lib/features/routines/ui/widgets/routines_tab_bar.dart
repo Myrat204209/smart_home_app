@@ -17,17 +17,9 @@ class RoutinesTabBar extends StatelessWidget {
     return TabBarExtensions.custom(
       tabs: _routineTabs,
       tabAlignment: TabAlignment.start,
+      indicatorColor: Colors.black,
+      dividerColor: Colors.transparent,
       tabController: _routinetabController,
     );
-    // TabBar(
-    //   controller: _routinetabController,
-    //   dividerColor: Colors.transparent,
-    //   padding: EdgeInsets.zero,
-    //   tabAlignment: TabAlignment.start,
-    //   indicatorPadding: EdgeInsets.zero,
-    //   isScrollable: true,
-
-    //   tabs: _routineTabs,
-    // );
   }
 }

@@ -18,6 +18,9 @@ extension TabBarExtensions on TabBar {
       tabs: tabs,
       padding: padding,
       isScrollable: isScrollable,
+      indicatorSize: TabBarIndicatorSize.tab,
+
+      indicatorWeight: 0.3,
       controller: tabController,
       tabAlignment: tabAlignment,
       indicatorColor: indicatorColor,
