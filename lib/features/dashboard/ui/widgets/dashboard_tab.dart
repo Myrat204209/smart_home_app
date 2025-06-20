@@ -20,17 +20,18 @@ class DashboardTab extends StatelessWidget {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: !isSelected ? Colors.white : Colors.black,
           ),
           child: SizedBox.square(
-            dimension: 60,
+            dimension: 67,
             child: Tab(
               height: 50,
-              icon: Icon(
+              icon:  Icon(
                 icon,
-                size: 40,
-                color: isSelected ? Colors.white : Colors.grey[400],
+                size: 30,
+                weight: 300,
+                color: isSelected ? Colors.white : Color(0xFF6f7ea8),
               ),
             ),
           ),
@@ -40,8 +41,9 @@ class DashboardTab extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+            fontWeight: FontWeight.w500,
+
+            color: Color(0xFF6f7ea8),
           ),
         ),
       ],
