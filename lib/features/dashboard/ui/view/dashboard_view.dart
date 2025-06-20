@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/core/core.dart';
 import 'package:smart_home_app/features/features.dart';
@@ -18,8 +17,10 @@ class _DashboardViewState extends State<DashboardView>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
-
+    _tabController = TabController(
+      length: kDashboardTabIcons.length,
+      vsync: this,
+    );
     _tabController.addListener(() {
       if (_tabController.indexIsChanging) {}
       setState(() {});
@@ -41,36 +42,12 @@ class _DashboardViewState extends State<DashboardView>
           TabBarExtensions.custom(
             tabController: _tabController,
             tabs: [
-              DashboardTab(
-                title: 'Bedroom',
-                isSelected: _tabController.index == 0,
-                icon: CupertinoIcons.bed_double,
-              ),
-              DashboardTab(
-                title: 'Living Room',
-                isSelected: _tabController.index == 1,
-                icon: Icons.chair_outlined,
-              ),
-              DashboardTab(
-                title: 'Kitchen',
-                icon: Icons.kitchen_outlined,
-                isSelected: _tabController.index == 2,
-              ),
-              DashboardTab(
-                title: 'Camera',
-                icon: Icons.security,
-                isSelected: _tabController.index == 3,
-              ),
-              DashboardTab(
-                title: 'Kids Room',
-                icon: Icons.child_care_outlined,
-                isSelected: _tabController.index == 4,
-              ),
-              DashboardTab(
-                title: 'Front Door',
-                icon: Icons.door_front_door_outlined,
-                isSelected: _tabController.index == 5,
-              ),
+              for (var i = 0; i < kDashboardTabTitles.length; i++)
+                DashboardTab(
+                  title: kDashboardTabTitles[i],
+                  icon: kDashboardTabIcons[i],
+                  isSelected: _tabController.index == i,
+                ),
             ],
           ),
           Expanded(
@@ -79,12 +56,12 @@ class _DashboardViewState extends State<DashboardView>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  for (int i = 0; i < 6; i++) DashboardDevicesGrid(),
-                  // DashboardDevicesGrid(),
-                  // DashboardDevicesGrid(),
-                  // DashboardDevicesGrid(),
-                  // DashboardDevicesGrid(),
-                  // DashboardDevicesGrid(),
+                  DashboardAllDeviceExpansibles(),
+                  for (var i = 1; i < 7; i++)
+                    DashboardDevicesGrid(
+                      roomIndex: i,
+                      roomName: kDashboardTabTitles[i],
+                    ),
                 ],
               ),
             ),
