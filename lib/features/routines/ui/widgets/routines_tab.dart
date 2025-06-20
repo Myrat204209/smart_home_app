@@ -5,23 +5,41 @@ import 'package:flutter/material.dart';
 class RoutinesTab extends StatelessWidget {
   const RoutinesTab({
     super.key,
-    required this.title,
-    required this.icon,
-    required this.isSelected,
+    this.title,
+    this.icon,
+    this.isSelected = false,
   });
-  final String title;
-  final IconData icon;
+  final String? title;
+  final IconData? icon;
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
+    assert(title != null || icon != null);
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: !isSelected ? Colors.white : Colors.black,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isSelected ? Colors.black : Color(0xffe3e3e3),
+          width: 1.1,
+        ),
       ),
+
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-        child: Tab(height: 30, text: title),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+        child: Tab(
+          iconMargin: EdgeInsets.zero,
+          icon: icon != null ? Icon(icon, size: 24, color: Colors.black) : null,
+          height: 37,
+          child: title != null
+              ? Text(
+                  title!,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: !isSelected ? FontWeight.w400 : FontWeight.w500,
+                  ),
+                )
+              : null,
+        ),
       ),
     );
   }

@@ -2,12 +2,9 @@
 import 'package:flutter/material.dart';
 
 class MyRoutinesCollapsibleView extends StatefulWidget {
-  const MyRoutinesCollapsibleView({
-    super.key,
-    required this.title,
-  });
+  const MyRoutinesCollapsibleView({super.key, required this.title});
 
-  final String title ;
+  final String title;
   @override
   State<MyRoutinesCollapsibleView> createState() =>
       _MyRoutinesCollapsibleViewState();
@@ -55,7 +52,7 @@ class _MyRoutinesCollapsibleViewState extends State<MyRoutinesCollapsibleView> {
               style: TextStyle(
                 fontSize: 15.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             trailing: RotationTransition(
