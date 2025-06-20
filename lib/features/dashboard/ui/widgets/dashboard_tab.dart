@@ -32,6 +32,7 @@ class DashboardTab extends StatelessWidget {
                 size: 30,
                 weight: 300,
                 color: isSelected ? Colors.white : Color(0xFF6f7ea8),
+              
               ),
             ),
           ),
