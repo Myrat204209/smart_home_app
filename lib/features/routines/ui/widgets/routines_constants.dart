@@ -1,1 +1,2 @@
-// TODO Implement this library.
+
+const List<String> kRoutineTabTitles = ['All', 'Favorites', 'Scheduled'];

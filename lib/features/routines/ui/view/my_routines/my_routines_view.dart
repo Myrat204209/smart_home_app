@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/routines/ui/ui.dart';
 
 
-
 class MyRoutinesView extends StatefulWidget {
   const MyRoutinesView({super.key});
 
@@ -35,6 +34,7 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
   Widget build(BuildContext context) {
     return Column(
       children: [
+        
         TabBar(
           controller: _myRoutinetabController,
           labelPadding: EdgeInsets.symmetric(horizontal: 4),
@@ -45,11 +45,12 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
           indicatorColor: Colors.transparent,
           indicatorPadding: EdgeInsets.zero,
           isScrollable: true,
-          tabs:  [
+          tabs: [
             for (int i = 0; i < 3; i++)
-              RoutinesTab(title: 'All', isSelected: true),
-            RoutinesTab(title: 'Favorites'),
-            RoutinesTab(title: 'Scheduled'),
+              RoutinesTab(
+                title: kRoutineTabTitles[i],
+                isSelected: i == _myRoutinetabController.index,
+              ),
             RoutinesTab(icon: Icons.add),
           ],
         ),
