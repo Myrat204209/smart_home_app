@@ -17,25 +17,12 @@ class AppRouter extends RootStackRouter {
           path: 'dashboard',
           initial: true,
           children: [
-            AutoRoute(
-              path: 'tab1',
-              page: Tab1Route.page,
-              initial: true,
-              children: [
-                AutoRoute(
-                  path: 'lights',
-                  page: LightsRoute.page,
-                  initial: true,
-                  type: RouteType.custom(
-                    transitionsBuilder: TransitionsBuilders.fadeIn,
-                  ),
-                ),
-                // AutoRoute(path: 'thermostat', page: ThermostatRoute.page),
-              ],
-            ),
-            AutoRoute(path: 'tab2', page: Tab2Route.page),
-            AutoRoute(path: 'tab3', page: Tab3Route.page),
-            AutoRoute(path: 'tab4', page: Tab4Route.page),
+            //TODO: This Route should be push to the DashboardRoute
+            AutoRoute(path: 'lights', page: LightsRoute.page),
+            // AutoRoute(path: 'tab1', page: Tab1Route.page, initial: true),
+            // AutoRoute(path: 'tab2', page: Tab2Route.page),
+            // AutoRoute(path: 'tab3', page: Tab3Route.page),
+            // AutoRoute(path: 'tab4', page: Tab4Route.page),
           ],
         ),
 

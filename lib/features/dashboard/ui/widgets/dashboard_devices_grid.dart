@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/features.dart';
@@ -41,7 +43,6 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
               child: IconButton(
                 icon: Icon(Icons.more_horiz_rounded),
                 onPressed: () {
-                  // Navigate to add device page
                   context.router.push(LightsRoute());
                 },
               ),
@@ -61,17 +62,18 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
                 return DashboardDeviceCard(
                   imageLink: kImagesList[index],
                   onDeviceTapped: () {
+                    log(
+                      '--- Button Tapped! Attempting to navigate to LightsRoute... ---',
+                    );
+                    final router = AutoRouter.of(context);
+                    log(
+                      'Router found: $router \nCurrent path: ${router.currentPath}',
+                    );
+                    //TODO: Fix the navigation issue
                     context.router.push(LightsRoute());
-                    // context.router.pushPath(
-                    //   '/dashboard/tab1/lights',
-                    //   includePrefixMatches: true,
-                    //   onFailure: (failure) {
-                    //     GetIt.I<Talker>().error(
-                    //       'Failed to navigate to lights page: $failure',
-                    //     );
-                    //   },
-                    //   // queryParams: {'device': 'lights'},
-                    // );
+                    log(
+                      'Last Router : $router \nLatest path: ${router.currentPath}',
+                    );
                   },
                 );
               },

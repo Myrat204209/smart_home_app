@@ -107,9 +107,11 @@ class _DashboardViewState extends State<DashboardView>
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),
                   DashboardDevicesGrid(),
+
                 ],
               ),
             ),
+            Expanded(child: AutoRouter())
           ],
         ),
       ),
@@ -117,7 +119,7 @@ class _DashboardViewState extends State<DashboardView>
   }
 }
 
-@RoutePage()
+// @RoutePage()
 class Tab1Page extends StatelessWidget {
   const Tab1Page({super.key});
 
@@ -128,7 +130,7 @@ class Tab1Page extends StatelessWidget {
   }
 }
 
-@RoutePage()
+// @RoutePage()
 class Tab2Page extends StatelessWidget {
   const Tab2Page({super.key});
 
@@ -139,7 +141,7 @@ class Tab2Page extends StatelessWidget {
   }
 }
 
-@RoutePage()
+// @RoutePage()
 class Tab3Page extends StatelessWidget {
   const Tab3Page({super.key});
 
@@ -150,7 +152,7 @@ class Tab3Page extends StatelessWidget {
   }
 }
 
-@RoutePage()
+// @RoutePage()
 class Tab4Page extends StatelessWidget {
   const Tab4Page({super.key});
 
