@@ -75,7 +75,7 @@ class _DashboardViewState extends State<DashboardView>
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 19.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: TabBarView(
                 controller: _tabController,
                 children: [

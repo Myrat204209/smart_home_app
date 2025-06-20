@@ -34,14 +34,11 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           contentPadding: EdgeInsets.zero,
-          trailing: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: IconButton(
-              icon: Icon(Icons.more_horiz_rounded),
-              onPressed: () {
-                context.router.push(LightsRoute());
-              },
-            ),
+          trailing: IconButton(
+            icon: Icon(Icons.more_horiz_rounded),
+            onPressed: () {
+              context.router.push(LightsRoute());
+            },
           ),
         ),
         Expanded(
@@ -49,8 +46,8 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
             padding: EdgeInsets.zero,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 7.5,
+              crossAxisSpacing: 7.5,
               childAspectRatio: 1.0883,
             ),
             itemCount: 4, // Example number of devices

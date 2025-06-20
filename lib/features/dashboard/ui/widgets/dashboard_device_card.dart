@@ -23,66 +23,62 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
       borderRadius: BorderRadius.circular(20),
       child: Card(
         color: switched ? Colors.black : Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(child: Image.asset(widget.imageLink, fit: BoxFit.contain)),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Smart speaker',
-                          softWrap: true,
-                          style: TextStyle(
-                            fontSize: 18,
-                            height: 1,
-                            color: switched ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        SizedBox.square(dimension: 5),
-                        Text(
-                          '60%',
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
+                  Icon(
+                    Icons.light_outlined,
+                    size: 30,
+                    color: !switched ? Colors.black : Colors.white,
                   ),
-                  RotatedBox(
-                    quarterTurns: 3,
-                    child: Switch.adaptive(
-                      activeColor: Colors.black,
-                      activeTrackColor: Colors.white,
-                      inactiveThumbColor: Colors.white,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      trackOutlineColor: WidgetStateProperty.all(
-                        Colors.transparent,
-                      ),
-                      overlayColor: WidgetStateProperty.all(Colors.transparent),
-                      inactiveTrackColor: Colors.grey[300],
-                      value: switched,
-                      onChanged: (bool value) {
-                        setState(() {
-                          switched = !switched;
-                        });
-                      },
+                  Switch.adaptive(
+                    activeColor: Colors.black,
+                    activeTrackColor: Colors.white,
+                    inactiveThumbColor: Colors.white,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    trackOutlineColor: WidgetStateProperty.all(
+                      Colors.transparent,
                     ),
+                    padding: EdgeInsets.all(0),
+
+                    overlayColor: WidgetStateProperty.all(Colors.transparent),
+                    inactiveTrackColor: Colors.grey[300],
+                    value: switched,
+                    onChanged: (bool value) {
+                      setState(() {
+                        switched = !switched;
+                      });
+                    },
                   ),
                 ],
               ),
-            ),
-          ],
+              Spacer(),
+              Text(
+                'Smart Lights',
+                softWrap: true,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: switched ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+
+              SizedBox.square(dimension: 5),
+              Text(
+                '60%',
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
