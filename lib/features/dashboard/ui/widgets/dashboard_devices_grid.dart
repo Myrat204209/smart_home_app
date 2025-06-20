@@ -51,7 +51,7 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
               crossAxisCount: 2,
               mainAxisSpacing: 8.0,
               crossAxisSpacing: 8.0,
-              childAspectRatio: 0.7,
+              childAspectRatio: 1.0883,
             ),
             itemCount: 4, // Example number of devices
             itemBuilder: (context, index) {
