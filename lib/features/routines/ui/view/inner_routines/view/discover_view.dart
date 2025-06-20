@@ -45,17 +45,17 @@ class _DiscoverViewState extends State<DiscoverView>
           indicatorPadding: EdgeInsets.zero,
           isScrollable: true,
           tabs: const [
-            RoutinesTab(
+            InnerRoutinesTab(
               title: 'All',
               icon: Icons.all_inclusive,
               isSelected: false,
             ),
-            RoutinesTab(
+            InnerRoutinesTab(
               title: 'Favorites',
               icon: Icons.favorite,
               isSelected: false,
             ),
-            RoutinesTab(
+            InnerRoutinesTab(
               title: 'Scheduled',
               icon: Icons.schedule,
               isSelected: false,
