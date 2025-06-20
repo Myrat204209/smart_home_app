@@ -42,6 +42,9 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
 
   @override
   Widget build(BuildContext context) {
-    return MyRoutinesContents(controller: _myRoutinetabController);
+    return MyRoutinesContents(
+      controller: _myRoutinetabController,
+      isExtendable: true,
+    );
   }
 }

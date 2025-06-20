@@ -3,8 +3,12 @@ part of 'my_routines_view.dart';
 class MyRoutinesContents extends StatelessWidget {
   final TabController _myRoutinetabController;
 
-  const MyRoutinesContents({super.key, required TabController controller})
-    : _myRoutinetabController = controller;
+  final bool isExtendable;
+  const MyRoutinesContents({
+    super.key,
+    required TabController controller,
+    required this.isExtendable,
+  }) : _myRoutinetabController = controller;
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +17,24 @@ class MyRoutinesContents extends StatelessWidget {
         InnerRoutinesTabBar(
           tabController: _myRoutinetabController,
           innerRoutineTabs: [
-            for (int i = 0; i < _myRoutinetabController.length; i++)
+            for (int i = 0; i < _myRoutinetabController.length - 1; i++)
               InnerRoutinesTab(
                 title: kRoutineTabTitles[i],
                 isSelected: i == _myRoutinetabController.index,
               ),
-            InnerRoutinesTab(icon: Icons.add),
+            if (isExtendable)
+              InnerRoutinesTab(
+                icon: Icons.add,
+                isSelected:
+                    _myRoutinetabController.length - 1 ==
+                    _myRoutinetabController.index,
+              ),
           ],
         ),
         // Expanded widget to fill the remaining space with the tab views
         Expanded(
           child: TabBarView(
+            
             controller: _myRoutinetabController,
             children: [
               SingleChildScrollView(

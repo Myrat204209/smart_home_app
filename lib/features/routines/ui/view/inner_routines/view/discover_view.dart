@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/routines/routines.dart';
 
@@ -34,8 +33,6 @@ class _DiscoverViewState extends State<DiscoverView>
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    DiscoverContents(tabController: _tabController);
+    return DiscoverContents(tabController: _tabController);
   }
 }
