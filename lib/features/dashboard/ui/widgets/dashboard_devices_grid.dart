@@ -4,12 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/features.dart';
 
-const kImagesList = [
-  'assets/images/speaker.png',
-  'assets/images/thermostat.png',
-  'assets/images/lights.png',
-  'assets/images/router.png',
-];
 
 class DashboardDevicesGrid extends StatefulWidget {
   const DashboardDevicesGrid({super.key});
@@ -53,7 +47,6 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
             itemCount: 4, // Example number of devices
             itemBuilder: (context, index) {
               return DashboardDeviceCard(
-                imageLink: kImagesList[index],
                 onDeviceTapped: () => context.router.push(LightsRoute()),
               );
             },

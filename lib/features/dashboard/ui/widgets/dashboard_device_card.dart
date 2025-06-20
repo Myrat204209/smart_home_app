@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 class DashboardDeviceCard extends StatefulWidget {
   const DashboardDeviceCard({
     super.key,
-    required this.imageLink,
     required this.onDeviceTapped,
   });
-  final String imageLink;
   final VoidCallback onDeviceTapped;
   @override
   State<DashboardDeviceCard> createState() => _DashboardDeviceCardState();

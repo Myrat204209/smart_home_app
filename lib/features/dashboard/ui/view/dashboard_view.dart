@@ -79,12 +79,12 @@ class _DashboardViewState extends State<DashboardView>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  DashboardDevicesGrid(),
-                  DashboardDevicesGrid(),
-                  DashboardDevicesGrid(),
-                  DashboardDevicesGrid(),
-                  DashboardDevicesGrid(),
-                  DashboardDevicesGrid(),
+                  for (int i = 0; i < 6; i++) DashboardDevicesGrid(),
+                  // DashboardDevicesGrid(),
+                  // DashboardDevicesGrid(),
+                  // DashboardDevicesGrid(),
+                  // DashboardDevicesGrid(),
+                  // DashboardDevicesGrid(),
                 ],
               ),
             ),
