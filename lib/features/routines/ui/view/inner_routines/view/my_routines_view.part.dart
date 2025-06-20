@@ -34,15 +34,14 @@ class MyRoutinesContents extends StatelessWidget {
         // Expanded widget to fill the remaining space with the tab views
         Expanded(
           child: TabBarView(
-            
             controller: _myRoutinetabController,
             children: [
               SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    MyRoutinesCollapsibleView(title: 'Manually run routines'),
-                    MyRoutinesCollapsibleView(title: 'Automatic routines'),
+                    InnerRoutinesExpansible(title: 'Manually run routines'),
+                    InnerRoutinesExpansible(title: 'Automatic routines'),
                   ],
                 ),
               ),

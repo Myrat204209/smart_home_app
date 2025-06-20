@@ -14,7 +14,6 @@ class InnerRoutinesTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      
       controller: _innerRoutineTabController,
       labelPadding: EdgeInsets.symmetric(horizontal: 4),
       dividerColor: Colors.transparent,

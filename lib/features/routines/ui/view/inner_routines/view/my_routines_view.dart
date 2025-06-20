@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/routines/ui/ui.dart';
 
-import 'my_routines_expansible.dart';
 
 part 'my_routines_view.part.dart';
 
