@@ -54,7 +54,8 @@ class _DashboardAllDeviceExpansiblesState
                       context.router.push(LightsRoute());
                     case 1:
                       context.router.push(ThermostatRoute());
-
+                    case 2:
+                      context.router.push(SpeakerRoute());
                     default:
                   }
                   log('asdasdasdj');

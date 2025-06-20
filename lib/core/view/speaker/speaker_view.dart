@@ -6,10 +6,14 @@ class SpeakerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EnergyConsumptionWidget(
-      currentConsumption: 0.45,
-      totalPossible: 1.0,
-      outsideConsumption: 0.85,
+    return Scaffold(
+      body: Center(
+        child: EnergyConsumptionWidget(
+          currentConsumption: 0.45,
+          totalPossible: 1.0,
+          outsideConsumption: 0.85,
+        ),
+      ),
     );
   }
 }

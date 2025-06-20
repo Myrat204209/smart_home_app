@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 class EnergyConsumptionWidget extends StatelessWidget {
   final double currentConsumption; // e.g., 0.45
-  final double totalPossible; // e.g., representing the full circle if needed, or just a base for calculation
+  final double
+  totalPossible; // e.g., representing the full circle if needed, or just a base for calculation
   final double outsideConsumption; // e.g., 0.85
 
   const EnergyConsumptionWidget({
@@ -15,9 +17,8 @@ class EnergyConsumptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200, // Adjust size as needed
-      height: 200, // Adjust size as needed
+    return SizedBox.square(
+      dimension: 296,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -54,10 +55,7 @@ class EnergyConsumptionWidget extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 '${outsideConsumption.toStringAsFixed(2)}Kwh outside',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
             ],
           ),
@@ -79,39 +77,42 @@ class _EnergyArcPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final radius = math.min(size.width / 2, size.height / 2) - 10; // Adjust for stroke width and dots
+    final radius = math.min(size.width / 2, size.height / 2) - 5;
 
     final backgroundPaint = Paint()
-      ..color = Colors.grey[300]! // Lighter gray background arc
+      ..color = Colors.grey.shade400
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 20 // Thickness of the arc
-      ..strokeCap = StrokeCap.round; // Round ends
+      ..strokeWidth = 45
+      ..strokeCap = StrokeCap.round;
 
     final progressPaint = Paint()
-      ..color = Colors.blueGrey[400]! // Darker gray/blue for the progress
+      ..color = Colors.black
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 20
+      ..strokeWidth = 4
       ..strokeCap = StrokeCap.round;
 
     final innerCirclePaint = Paint()
-      ..color = Colors.black // Inner circle stroke
+      ..color = Colors.white
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2; // Thin black stroke
+      ..strokeWidth = 2;
 
     final dotPaint = Paint()
-      ..color = Colors.black // Dot color
+      ..color = Colors
+          .black // Dot color
       ..style = PaintingStyle.fill;
 
     // Draw the full background circle/arc (we'll make it partially visible later if needed)
     // For this design, it looks like a full circle with an 'empty' gap
     // Let's assume the arc covers 300 degrees out of 360, leaving a gap.
-    const double startAngleOffset = -math.pi / 2; // Start from the top (12 o'clock)
-    const double totalArcSweep = 2 * math.pi * 0.85; // Represents roughly 300 degrees (360 * 0.85)
+    const double startAngleOffset =
+        -math.pi / 2; // Start from the top (12 o'clock)
+    const double totalArcSweep =
+        2 * math.pi * 0.85; // Represents roughly 300 degrees (360 * 0.85)
 
     // Draw the outer background arc
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      startAngleOffset + math.pi * 0.1, // Adjusted start to create the gap
+      startAngleOffset + math.pi * 0.1,
       totalArcSweep,
       false,
       backgroundPaint,
@@ -133,7 +134,11 @@ class _EnergyArcPainter extends CustomPainter {
     final double innerRadius = radius * 0.7; // Inner circle radius
 
     // Draw inner circle stroke
-    canvas.drawCircle(center, innerRadius + innerCirclePaint.strokeWidth / 2, innerCirclePaint);
+    canvas.drawCircle(
+      center,
+      innerRadius + innerCirclePaint.strokeWidth / 2,
+      innerCirclePaint,
+    );
 
     // The inner progress bar, let's define its start and end angles
     // Based on the image, the 'progress' part (darker grey) spans from roughly
@@ -147,7 +152,8 @@ class _EnergyArcPainter extends CustomPainter {
 
     // Outer light gray arc
     final double outerArcStartAngle = math.pi * 0.75; // Roughly 7 o'clock
-    final double outerArcSweepAngle = math.pi * 1.5;   // Goes up to roughly 1 o'clock
+    final double outerArcSweepAngle =
+        math.pi * 1.5; // Goes up to roughly 1 o'clock
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
       outerArcStartAngle,
@@ -157,8 +163,13 @@ class _EnergyArcPainter extends CustomPainter {
     );
 
     // Inner darker progress arc
-    final double innerArcRadius = innerRadius + backgroundPaint.strokeWidth / 2 - 5; // A bit outside the black circle
-    final double innerProgressSweepAngle = (currentConsumption / totalPossible) * outerArcSweepAngle; // Scale progress
+    final double innerArcRadius =
+        innerRadius +
+        backgroundPaint.strokeWidth / 2 -
+        5; // A bit outside the black circle
+    final double innerProgressSweepAngle =
+        (currentConsumption / totalPossible) *
+        outerArcSweepAngle; // Scale progress
     // Ensure the inner progress arc's start angle is aligned with the outer arc's perceived start.
     final double innerArcStartAngle = outerArcStartAngle;
 
@@ -191,7 +202,8 @@ class _EnergyArcPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     // Only repaint if consumption values change
-    return (oldDelegate as _EnergyArcPainter).currentConsumption != currentConsumption ||
-           oldDelegate.totalPossible != totalPossible;
+    return (oldDelegate as _EnergyArcPainter).currentConsumption !=
+            currentConsumption ||
+        oldDelegate.totalPossible != totalPossible;
   }
 }
