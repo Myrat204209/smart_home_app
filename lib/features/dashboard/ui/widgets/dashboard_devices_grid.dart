@@ -4,8 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/features.dart';
 
-
-
 class DashboardDevicesGrid extends StatefulWidget {
   final int roomIndex;
   final String roomName;
@@ -37,7 +35,14 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
           trailing: IconButton(
             icon: Icon(Icons.more_horiz_rounded),
             onPressed: () {
-              context.router.push(LightsRoute());
+              switch (widget.roomIndex) {
+                case 0:
+                  context.router.push(LightsRoute());
+                case 1:
+                  context.router.push(ThermostatRoute());
+
+                default:
+              }
             },
           ),
         ),
@@ -56,7 +61,9 @@ class _DashboardDevicesGridState extends State<DashboardDevicesGrid>
                 deviceIcon: kDeviceIcons[index],
                 deviceTitle: kDeviceTitles[index],
                 deviceValue: '60%',
-                onDeviceTapped: () => context.router.push(LightsRoute()),
+                onDeviceTapped: () {
+                  context.router.push(LightsRoute());
+                },
               );
             },
           ),

@@ -19,5 +19,6 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(path: '/lights', page: LightsRoute.page),
+    AutoRoute(path: '/thermostat', page: ThermostatRoute.page),
   ];
 }

@@ -1,15 +1,17 @@
 import 'dart:math' as math;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class ClimateControlScreen extends StatefulWidget {
-  const ClimateControlScreen({super.key});
+@RoutePage()
+class ThermostatPage extends StatefulWidget {
+  const ThermostatPage({super.key});
 
   @override
-  _ClimateControlScreenState createState() => _ClimateControlScreenState();
+  _ThermostatPageState createState() => _ThermostatPageState();
 }
 
-class _ClimateControlScreenState extends State<ClimateControlScreen> {
+class _ThermostatPageState extends State<ThermostatPage> {
   double _temperature = 28.0;
   final double _minTemperature = 16.0;
   final double _maxTemperature = 30.0;

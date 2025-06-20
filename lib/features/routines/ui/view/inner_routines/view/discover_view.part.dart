@@ -12,11 +12,18 @@ class DiscoverContents extends StatelessWidget {
       children: [
         InnerRoutinesTabBar(
           tabController: _discoverTabController,
-          innerRoutineTabs: const [
-            InnerRoutinesTab(title: 'All'),
-            InnerRoutinesTab(title: 'Favorites', isSelected: true),
-            InnerRoutinesTab(title: 'Scheduled'),
+          innerRoutineTabs: [
+            for (int i = 0; i < _discoverTabController.length; i++)
+              InnerRoutinesTab(
+                title: kRoutineTabTitles[i],
+                isSelected: i == _discoverTabController.index,
+              ),
           ],
+          //   const [
+          //   InnerRoutinesTab(title: 'All'),
+          //   InnerRoutinesTab(title: 'Favorites', isSelected: true),
+          //   InnerRoutinesTab(title: 'Scheduled'),
+          // ],
         ),
 
         // Expanded widget to fill the remaining space with the tab views

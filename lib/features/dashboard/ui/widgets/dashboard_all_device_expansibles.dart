@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_home_app/features/app/app.dart';
 import 'package:smart_home_app/features/dashboard/dashboard.dart';
 
 class DashboardAllDeviceExpansibles extends StatefulWidget {
@@ -44,7 +48,17 @@ class _DashboardAllDeviceExpansiblesState
                 deviceIcon: kDeviceIcons[index],
                 deviceTitle: kDeviceTitles[index],
                 deviceValue: '60%',
-                onDeviceTapped: () {},
+                onDeviceTapped: () {
+                  switch (index) {
+                    case 0:
+                      context.router.push(LightsRoute());
+                    case 1:
+                      context.router.push(ThermostatRoute());
+
+                    default:
+                  }
+                  log('asdasdasdj');
+                },
               );
             },
           ),

@@ -36,7 +36,7 @@ class _InnerRoutinesExpansibleState extends State<InnerRoutinesExpansible> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12, ),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       child: Expansible(
         controller: _innerExpansibleController,
         headerBuilder: (BuildContext context, Animation<double> animation) {
@@ -49,11 +49,13 @@ class _InnerRoutinesExpansibleState extends State<InnerRoutinesExpansible> {
               }
             },
             child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   widget.title,
                   style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -64,7 +66,7 @@ class _InnerRoutinesExpansibleState extends State<InnerRoutinesExpansible> {
                     _innerExpansibleController.isExpanded
                         ? Icons.keyboard_arrow_up
                         : Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
+                    color: Colors.black,
                     size: 28,
                   ),
                 ),
@@ -73,57 +75,98 @@ class _InnerRoutinesExpansibleState extends State<InnerRoutinesExpansible> {
           );
         },
         bodyBuilder: (BuildContext context, Animation<double> animation) {
-          return SizedBox(
-            height: 300,
-            child: GridView.builder(
-              itemCount: 3,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 1.5,
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.play_circle_fill,
-                        size: 50,
-                        color: Colors.deepPurple,
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Routine ${index + 1}',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+          return Column(
+            children: [
+              InnerRoutine(),
+              InnerRoutine(),
+              InnerRoutine(),
+              InnerRoutine(),
+            ],
           );
         },
         expansibleBuilder:
             (
-              BuildContext context,
-              Widget header,
-              Widget body,
+              BuildContext c,
+              Widget head,
+              Widget bd,
               Animation<double> animation,
-            ) {
-              return Column(children: [header, body]);
-            },
+            ) => Column(children: [head, bd]),
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOutQuad,
         reverseCurve: Curves.easeOutCubic,
         maintainState: true,
         // Keep state even when collapsed,
+      ),
+    );
+  }
+}
+
+class InnerRoutine extends StatelessWidget {
+  const InnerRoutine({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14.1)),
+      color: Colors.white,
+      shadowColor: Colors.black.withValues(alpha: 0.3),
+      margin: EdgeInsets.all(2),
+      elevation: 10,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(vertical: 13.5, horizontal: 15),
+        isThreeLine: true,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(
+            'Light Bulbs',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 8,
+          children: [
+            Text(
+              'Philips Hue 2',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Color(0xff222222),
+              ),
+            ),
+            Text(
+              'Living Room',
+
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: Color(0xffa4a4a4),
+              ),
+            ),
+          ],
+        ),
+        minTileHeight: 69,
+        leading: IconButton(
+          icon: Icon(
+            Icons.lightbulb_outline,
+            // size: 24,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+
+          style: IconButton.styleFrom(
+            backgroundColor: Colors.black,
+
+            minimumSize: Size(70, 90),
+
+            iconSize: 32,
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14.1),
+            ),
+          ),
+        ),
+        trailing: Switch.adaptive(value: false, onChanged: (value) {}),
       ),
     );
   }
