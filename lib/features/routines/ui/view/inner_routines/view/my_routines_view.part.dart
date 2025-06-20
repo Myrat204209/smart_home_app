@@ -10,7 +10,17 @@ class MyRoutinesContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InnerRoutinesTabBar(tabController: _myRoutinetabController),
+        InnerRoutinesTabBar(
+          tabController: _myRoutinetabController,
+          innerRoutineTabs: [
+            for (int i = 0; i < _myRoutinetabController.length; i++)
+              InnerRoutinesTab(
+                title: kRoutineTabTitles[i],
+                isSelected: i == _myRoutinetabController.index,
+              ),
+            InnerRoutinesTab(icon: Icons.add),
+          ],
+        ),
         // Expanded widget to fill the remaining space with the tab views
         Expanded(
           child: TabBarView(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/routines/ui/ui.dart';
 
@@ -23,8 +25,12 @@ class _MyRoutinesViewState extends State<MyRoutinesView>
 
     _myRoutinetabController.addListener(() {
       if (_myRoutinetabController.indexIsChanging) {
-        setState(() {});
+        log('----------------------------');
+        log(_myRoutinetabController.previousIndex.toString());
+
+        log(_myRoutinetabController.index.toString());
       }
+      setState(() {});
     });
   }
 

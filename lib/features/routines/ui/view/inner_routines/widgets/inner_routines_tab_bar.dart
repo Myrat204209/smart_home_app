@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/features/routines/routines.dart';
 
 class InnerRoutinesTabBar extends StatelessWidget {
-  const InnerRoutinesTabBar({super.key, required TabController tabController})
-    : _innerRoutineTabController = tabController;
+  const InnerRoutinesTabBar({
+    super.key,
+    required TabController tabController,
+    required List<Widget> innerRoutineTabs,
+  }) : _innerRoutineTabController = tabController,
+       _innerRoutineTabs = innerRoutineTabs;
 
   final TabController _innerRoutineTabController;
+  final List<Widget> _innerRoutineTabs;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +23,7 @@ class InnerRoutinesTabBar extends StatelessWidget {
       indicatorColor: Colors.transparent,
       indicatorPadding: EdgeInsets.zero,
       isScrollable: true,
-      tabs: [
-        for (int i = 0; i < 3; i++)
-          InnerRoutinesTab(
-            title: kRoutineTabTitles[i],
-            isSelected: i == _innerRoutineTabController.index,
-          ),
-        InnerRoutinesTab(icon: Icons.add),
-      ],
+      tabs: _innerRoutineTabs,
     );
   }
 }
