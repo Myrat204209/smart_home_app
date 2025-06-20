@@ -27,8 +27,9 @@ class _AppViewState extends State<AppView> {
       debugShowCheckedModeBanner: false,
       // theme: AppTheme().themeData,
       themeMode: ThemeMode.system,
-      routerConfig: _router.config(
+      theme: ThemeData(fontFamily: 'Inter', useMaterial3: true),
 
+      routerConfig: _router.config(
         navigatorObservers: () => [
           TalkerRouteObserver(_talker),
           // SentryNavigatorObserver(),
