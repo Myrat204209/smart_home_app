@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
 import 'package:smart_home_app/features/app/app.dart';
 
@@ -11,41 +12,60 @@ class AppBottomNavigation extends StatelessWidget {
     return AutoTabsScaffold(
       appBarBuilder: (context, tabsRouter) {
         return AppBar(
-          leading: CircleAvatar(
-            foregroundImage: const AssetImage('assets/images/momo.jpg'),
-            backgroundColor: Color(0xFFB4B4B4),
-            radius: 25,
-          ),
-          title: Text('John Doe'),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 5,
-              children: [
-                Icon(Icons.location_on_outlined, size: 16),
-                Text(
-                  'Ashgabat,',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                ),
-                Text(
-                  'Turkmenistan',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black54,
-                  ),
-                ),
-              ],
+          toolbarHeight: 80,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: CircleAvatar(
+              backgroundColor: Color(0xFFB4B4B4),
+              radius: 50,
+
+              child: Image.asset('assets/images/momo.png', fit: BoxFit.contain),
             ),
           ),
+
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 10,
+            children: [
+              Text(
+                'John Doe',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 5,
+                children: [
+                  Icon(Icons.location_on_outlined, size: 16),
+                  Text(
+                    'Ashgabat,',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  Text(
+                    'Turkmenistan',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
           actions: [
-            IconButton(
-              icon: const Icon(Icons.notifications_none_outlined),
+            IconButton.outlined(
+              color: Color(0xFFF7F7F7),
+
+              icon: const Icon(CupertinoIcons.bell, color: Colors.black),
               onPressed: () {},
             ),
           ],
