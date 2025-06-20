@@ -22,8 +22,9 @@ class _DashboardViewState extends State<DashboardView>
       vsync: this,
     );
     _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {}
-      setState(() {});
+      if (_tabController.indexIsChanging) {
+        setState(() {});
+      }
     });
   }
 
