@@ -38,7 +38,7 @@ class _DashboardDeviceCardState extends State<DashboardDeviceCard> {
                 children: [
                   Icon(
                     widget.deviceIcon,
-                    size: 30,
+                    size: 50,
                     color: !switched ? Colors.black : Colors.white,
                   ),
                   DeviceCardSwitch(
